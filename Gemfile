@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.1'
+gem 'rails', '4.2.3'
 # Use sqlite3 as the database for Active Record
 ##gem 'sqlite3'
 # Use mysq2 database for Active Record
@@ -28,6 +28,12 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'slim-rails'
 # data visualization using google api
 gem 'chartkick'
+# Devise is a flexible authentication solution for Rails based on Warden.
+gem 'devise'
+# translation gem that devise message translate en to ja
+gem 'devise-i18n'
+# bootstrap gem
+gem 'bootstrap-sass'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
