@@ -24,6 +24,23 @@ Rails.application.routes.draw do
 
 	resources :visualize do
 	end
+
+	resources :brands do
+	end
+
+	resources :trades do
+	end
+
+	# brands trades stock_accoujntsはユーザが登録する場合のみ(現状)
+	namespace :admin do
+		resources :brands, only: [:index, :show]
+		resources :fields
+		resources :markets
+		resources :stcok_accounts, only: [:index, :show]
+		resources :stock_companies
+		resources :trades, only: [:index, :show]
+		resources :users
+	end
   # Example resource route with options:
   #   resources :products do
   #     member do
