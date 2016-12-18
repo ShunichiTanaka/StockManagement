@@ -32,8 +32,10 @@ gem 'chartkick'
 gem 'devise'
 # translation gem that devise message translate en to ja
 gem 'devise-i18n'
-# bootstrap gem
-gem 'bootstrap-sass'
+# bootstrap material design gem
+gem 'bootstrap-material-design'
+# bootstrap for material design gem
+gem 'bootstrap3-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
