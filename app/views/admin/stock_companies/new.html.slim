@@ -1,0 +1,13 @@
+= form_for(@stock_company, url: admin_stock_companies_path) do |f|
+  .well.page.active
+    .form-group.label-static
+      .control-label for="i2"
+        = f.label "CompanyName"
+      .form-control
+        = f.text_field :name, id: "i2", placeholder: 'CompanyName'
+      .control-label
+        = f.label "refference"
+      .form-control
+        = f.text_field :info, placeholder: 'Free Space'
+    = f.submit "Regist"
+
