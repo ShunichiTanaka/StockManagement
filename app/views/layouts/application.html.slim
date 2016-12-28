@@ -65,7 +65,10 @@ html
         - flash.each do |key, value|
           - key = key == 'notice' ? 'success' : 'danger'
           = content_tag :div, value, class: "alert alert-#{key}"
-        = yield
+        section.content-header
+          h3
+            == breadcrumbs separator: " / "
+          = yield
 
       br
       br
