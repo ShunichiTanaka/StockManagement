@@ -27,4 +27,5 @@ section.content
                             = stock_company.info
                         td.col-sm-1
                           = link_to t('views.admin.edit'), edit_admin_stock_company_path(stock_company), class: "btn btn-default"
-                = paginate @stock_companies
+                = page_entries_info @stock_companies
+            = paginate @stock_companies
