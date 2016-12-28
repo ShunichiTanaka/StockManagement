@@ -33,9 +33,17 @@ gem 'devise'
 # translation gem that devise message translate en to ja
 gem 'devise-i18n'
 # bootstrap material design gem
-gem 'bootstrap-material-design'
+#gem 'bootstrap-material-design'
 # bootstrap for material design gem
-gem 'bootstrap3-rails'
+#gem 'bootstrap3-rails'
+# bower gem to use adminlte
+gem 'bower-rails'
+# adminlte setting font
+gem 'font-awesome-rails'
+# paginate gem
+gem 'kaminari'
+# design gem forpaginate
+gem 'kaminari-bootstrap'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

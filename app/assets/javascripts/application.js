@@ -9,10 +9,12 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
+// require bootstrap
+// require bootstrap-material-design
 //
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require jquery
-//= require bootstrap
-//= require bootstrap-material-design
+//= require_tree
+//= require turbolinks
+//= require admin-lte/bootstrap/js/bootstrap
+//= require admin-lte/dist/js/app

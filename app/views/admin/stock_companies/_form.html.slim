@@ -1,0 +1,19 @@
+.col-md-12
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title
+        i.fa.fa-edit
+        |  Please input follows
+    form role="form"
+      .box-body
+        .form-group
+          = f.label :name
+          = f.text_field :name, class: "form-control", placeholder: "Company Name"
+        .form-group
+          = f.label :info
+          = f.text_area :info, class: "form-control", placeholder: "Refference", rows: 10
+      .box-footer
+        - if edit_flg == true
+          = f.submit t('views.admin.update'), class: "btn btn-primary"
+        - else
+          = f.submit t('views.admin.submit'), class: "btn btn-primary"

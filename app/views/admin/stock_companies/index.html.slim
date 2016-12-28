@@ -1,0 +1,32 @@
+section.content-header
+  h1
+    = t('admin.stock_companies.index')
+
+section.content
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          = link_to t('views.admin.new'), new_admin_stock_company_path, class: "btn btn-default", type: :button
+        .box-body
+          .dataTables_wrapper.form-inline.dt-bootstrap
+            .row
+              .col-sm-12
+                table.table.table-bordered.table-hover.dataTable
+                  th
+                    = t('admin.stock_companies.name')
+                  th
+                    = t('admin.stock_companies.info')
+                  th
+                  tbody
+                    - @stock_companies.each do |stock_company|
+                      tr
+                        td.col-sm-4
+                          h5
+                            = stock_company.name
+                        td.col-sm-7
+                          h5
+                            = stock_company.info
+                        td.col-sm-1
+                          = link_to t('views.admin.edit'), edit_admin_stock_company_path(stock_company), class: "btn btn-default"
+                = paginate @stock_companies

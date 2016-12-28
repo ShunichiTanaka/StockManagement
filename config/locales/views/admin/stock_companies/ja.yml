@@ -1,0 +1,7 @@
+ja:
+  admin:
+    stock_companies:
+      name: 証券会社名
+      info: 備考
+      index: 証券会社一覧
+
