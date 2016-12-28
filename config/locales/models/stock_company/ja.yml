@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      stock_company: 証券会社
+    attributes:
+      stock_company:
+        name: 証券会社名
+        info: 備考

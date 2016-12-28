@@ -1,0 +1,16 @@
+ja:
+  views:
+    admin:
+      top:           株式取引帳簿
+      user:          ユーザ管理
+      stock_company: 証券会社管理
+      trade:         取引管理
+      stock_account: 口座管理
+      brand:         銘柄管理
+      field:         分野管理
+      market:        市場管理
+      new:           新規作成
+      submit:        登録
+      edit:          編集
+      update:        更新
+
