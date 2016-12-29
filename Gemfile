@@ -44,6 +44,11 @@ gem 'font-awesome-rails'
 gem 'kaminari'
 # design gem forpaginate
 gem 'kaminari-bootstrap'
+# bullet(n+1) gem
+gem 'bullet'
+# breadcrumb gem
+gem 'gretel'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -61,6 +66,24 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
+	gem 'spring'
+
+	# rich rails console gem
+	gem 'pry-rails'
+
+	# Display model output results in tabular form
+	gem 'hirb'
+
+	# Make Hash and SQL log easier to view
+	gem 'rails-flog', require: 'flog'
+
+	# Rich error screen under development
+	gem 'better_errors'
+
+	# Display the value of the variable further on the error screen under development
+	gem 'binding_of_caller'
+
+	# Apply colors to Ruby objects for easy viewing
+	gem 'awesome_print'
 end
 
