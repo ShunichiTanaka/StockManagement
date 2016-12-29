@@ -1,3 +1,5 @@
+- breadcrumb :new_stock_company, @stock_company
+
 section.content
   = form_for(@stock_company, url: admin_stock_companies_path) do |f|
     = render partial: 'form', locals: { f: f, edit_flg: false }
