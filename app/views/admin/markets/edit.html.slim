@@ -1,0 +1,5 @@
+- breadcrumb :edit_market, @market
+
+section.content
+  = form_for(@market, url: admin_market_path, action: 'update') do |f|
+    = render partial: 'form', locals: { f: f, edit_flg: true }

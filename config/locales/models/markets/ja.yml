@@ -1,0 +1,8 @@
+ja:
+  activerecord:
+    models:
+      market: 市場
+    attributes:
+      market:
+        name: 市場名
+        info: 備考
