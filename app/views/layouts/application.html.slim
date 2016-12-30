@@ -62,22 +62,17 @@ html
                 = "　" + t('views.admin.market')
 
       div.content-wrapper
-        - flash.each do |key, value|
-          - key = key == 'notice' ? 'success' : 'danger'
-          = content_tag :div, value, class: "alert alert-#{key}"
         section.content-header
           h3
             == breadcrumbs separator: " / "
-          = yield
+        - flash.each do |key, vals|
+          - key = key == 'notice' ? 'success' : 'danger'
+          = content_tag :div, class: "alert alert-#{key}"
+            - vals.each do |val|
+              - concat content_tag :i, val, class: "icon fa fa-check"
+            - concat content_tag :button, "×", class: "close", 'data-dismiss' => 'alert'
+        = yield
 
-      br
-      br
-        .alert.alert-success.alert-dismissible
-          button.close data-dismiss="alert" aria-hidden="true" type="button" ×
-          h4
-            i.icon.fa.fa-check
-              | Alert
-          | Success alert preview. This alert is dismissable.
       footer.main-footer
         div.pull-right.hidden-xs Version1.0
         strong Copyright &copy; 2016
