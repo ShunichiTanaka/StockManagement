@@ -13,4 +13,5 @@ ja:
       submit:        登録
       edit:          編集
       update:        更新
+      destroy:       選択した項目を削除
 

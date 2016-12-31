@@ -10,11 +10,10 @@ class Admin::StockCompaniesController < ApplicationController
 		@stock_company = StockCompany.new(set_stock_company)
 		if @stock_company.save
 			# TODO error detail
-			flash[:notice] = 'create new stock company'
+			flash[:notice] = ["create new stock company"]
 		  return render 'sample/index'
 	  else
-			# TODO error detail
-			flash[:alert] = @stock_company.errors.messages.values
+			flash[:alert] = @stock_company.errors.full_messages
 		  return redirect_to action: :new
 		end
 	end
@@ -29,11 +28,10 @@ class Admin::StockCompaniesController < ApplicationController
 	def update
 	 	if @stock_company.update(set_stock_company)
 			# TODO error detail
-		  flash[:notice] = 'update stock company'
+		  flash[:notice] = ["update stock company"]
 		  redirect_to action: :index
 	  else
-			# TODO error detail
-			flash[:alert] = 'nononononon'
+			flash[:alert] = @stock_company.errors.full_messages
 		  render 'edit'
 	  end
 	end
