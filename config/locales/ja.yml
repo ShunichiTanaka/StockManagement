@@ -156,7 +156,7 @@ ja:
       one_page:
         display_entries:
           zero: "該当するデータが見つかりませんでした。"
-          one: "表示結果 1件中、1-1件のデータを表示しています"
+          one: "表示結果 1件中、1-1件"
       more_pages:
         display_entries: "表示結果 %{total}件中 %{first}-%{last}件"
   number:

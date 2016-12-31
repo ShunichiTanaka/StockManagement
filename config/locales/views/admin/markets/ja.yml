@@ -1,0 +1,6 @@
+ja:
+  admin:
+    markets:
+      name: 市場名
+      info: 備考
+      index: 市場一覧

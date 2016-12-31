@@ -1,0 +1,38 @@
+- breadcrumb :markets
+
+section.content
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          <!-- TODO  -->
+          = link_to t('views.admin.destroy'), new_admin_market_path, class: "btn btn-danger", type: :button
+          = ' '
+          = link_to t('views.admin.new'), new_admin_market_path, class: "btn btn-default", type: :button
+        .box-body
+          .dataTables_wrapper.form-inline.dt-bootstrap
+            .row
+              .col-sm-12
+                table.table.table-bordered.table-hover.dataTable
+                  th
+                    = check_box_tag ''
+                  th
+                    = t('admin.markets.name')
+                  th
+                    = t('admin.markets.info')
+                  th
+                  tbody
+                    - @markets.each do |market|
+                      tr
+                        td
+                          = check_box_tag 'checked_item', market.id
+                        td.col-sm-4
+                          h5
+                            = market.name
+                        td.col-sm-7
+                          h5
+                            = market.info
+                        td.col-sm-1
+                          = link_to t('views.admin.edit'), edit_admin_market_path(market), class: "btn btn-default"
+                = page_entries_info @markets
+            = paginate @markets
