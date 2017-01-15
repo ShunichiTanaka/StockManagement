@@ -15,7 +15,7 @@ section.content
               .col-sm-12
                 table.table.table-bordered.table-hover.dataTable
                   th
-                    = check_box_tag ''
+                    = check_box_tag 'check_all_box'
                   th
                     = t('admin.stock_companies.name')
                   th
@@ -25,7 +25,7 @@ section.content
                     - @stock_companies.each do |stock_company|
                       tr
                         td
-                          = check_box_tag 'checked_item', stock_company.id
+                          = check_box_tag '', stock_company.id, false, class: 'checked_item'
                         td.col-sm-4
                           h5
                             = stock_company.name
