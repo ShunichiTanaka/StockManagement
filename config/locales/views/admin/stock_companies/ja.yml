@@ -4,3 +4,5 @@ ja:
       name: 証券会社名
       info: 備考
       index: 証券会社一覧
+      new: 新規作成
+      show: 証券会社詳細

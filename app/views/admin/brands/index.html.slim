@@ -1,0 +1,53 @@
+- breadcrumb :brands
+
+section.content
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          = form_tag "/admin/brands", method: "delete" do
+            = submit_tag t('views.admin.destroy'), class: "btn btn-danger"
+            = ' '
+            = link_to t('views.admin.new'), new_admin_brand_path, class: "btn btn-default", type: :button
+            .box-body
+              .dataTables_wrapper.form-inline.dt-bootstrap
+                .row
+                  .col-sm-12
+                    table.table.table-bordered.table-striped.dataTable
+                      th
+                        = check_box_tag 'check_all_box'
+                      th
+                        = t('admin.brands.name')
+                      th
+                        = t('admin.brands.code')
+                      th
+                        = t('admin.brands.market_id')
+                      th
+                        = t('admin.brands.field_id')
+                      th
+                        = t('admin.brands.info')
+                      th
+                      tbody
+                        - @brands.each do |brand|
+                          tr
+                            td
+                              = check_box_tag "checked_item[#{brand.id}]", '', false, class: 'checked_item'
+                            td
+                              h5
+                                = link_to brand.name, admin_brand_path(brand)
+                            td
+                              h5
+                                = brand.code
+                            td
+                              h5
+                                = brand.market_id
+                            td
+                              h5
+                                = brand.field_id
+                            td
+                              h5
+                                = brand.info
+                            td.col-sm-1
+                              = link_to t('views.admin.edit'), edit_admin_brand_path(brand), class: "btn btn-default"
+                = page_entries_info @brands
+              = paginate @brands
