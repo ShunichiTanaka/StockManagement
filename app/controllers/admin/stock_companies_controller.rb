@@ -36,6 +36,14 @@ class Admin::StockCompaniesController < ApplicationController
 	  end
 	end
 
+	def destroy
+		checked_items = params[:checked_item].keys
+		StockCompany.delete(checked_items)
+		# TODO message
+		flash[:notice] = ["delete stock company"]
+		redirect_to action: :index
+	end
+
 	private
 
 	def set_stock_company

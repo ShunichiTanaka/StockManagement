@@ -37,7 +37,8 @@ Rails.application.routes.draw do
 		resources :fields
 		resources :markets
 		resources :stcok_accounts, only: [:index, :show]
-		resources :stock_companies
+		resources :stock_companies, except: [:destroy]
+		resource :stock_companies, only: [:destroy]
 		resources :trades, only: [:index, :show]
 		resources :users
 	end
