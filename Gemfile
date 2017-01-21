@@ -32,6 +32,8 @@ gem 'chartkick'
 gem 'devise'
 # translation gem that devise message translate en to ja
 gem 'devise-i18n'
+# get stock information
+gem 'quandl'
 # bootstrap material design gem
 #gem 'bootstrap-material-design'
 # bootstrap for material design gem
