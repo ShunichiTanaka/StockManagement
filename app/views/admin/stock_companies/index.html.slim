@@ -6,7 +6,7 @@ section.content
       .box
         .box-header
           <!-- TODO  -->
-          = link_to t('views.admin.destroy'), new_admin_stock_company_path, class: "btn btn-danger", type: :button
+          = link_to t('views.admin.destroy'), new_admin_stock_company_path, method: "delete", class: "btn btn-danger", type: :button
           = ' '
           = link_to t('views.admin.new'), new_admin_stock_company_path, class: "btn btn-default", type: :button
         .box-body

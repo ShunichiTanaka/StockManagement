@@ -1,5 +1,5 @@
 $ ->
-  	$('#check_all_box').click ->
+    $('#check_all_box').click ->
       if $(this).prop 'checked'
         $('.checked_item').prop 'checked', true
       else

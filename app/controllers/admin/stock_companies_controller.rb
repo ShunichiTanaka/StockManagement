@@ -36,6 +36,9 @@ class Admin::StockCompaniesController < ApplicationController
 	  end
 	end
 
+	def destroy
+	end
+
 	private
 
 	def set_stock_company
