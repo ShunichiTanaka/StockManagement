@@ -5,34 +5,34 @@ section.content
     .col-xs-12
       .box
         .box-header
-          <!-- TODO  -->
-          = link_to t('views.admin.destroy'), new_admin_stock_company_path, method: "delete", class: "btn btn-danger", type: :button
-          = ' '
-          = link_to t('views.admin.new'), new_admin_stock_company_path, class: "btn btn-default", type: :button
-        .box-body
-          .dataTables_wrapper.form-inline.dt-bootstrap
-            .row
-              .col-sm-12
-                table.table.table-bordered.table-hover.dataTable
-                  th
-                    = check_box_tag 'check_all_box'
-                  th
-                    = t('admin.stock_companies.name')
-                  th
-                    = t('admin.stock_companies.info')
-                  th
-                  tbody
-                    - @stock_companies.each do |stock_company|
-                      tr
-                        td
-                          = check_box_tag '', stock_company.id, false, class: 'checked_item'
-                        td.col-sm-4
-                          h5
-                            = stock_company.name
-                        td.col-sm-7
-                          h5
-                            = stock_company.info
-                        td.col-sm-1
-                          = link_to t('views.admin.edit'), edit_admin_stock_company_path(stock_company), class: "btn btn-default"
+          = form_tag "/admin/stock_companies", method: "delete" do
+            = submit_tag t('views.admin.destroy'), class: "btn btn-danger"
+            = ' '
+            = link_to t('views.admin.new'), new_admin_stock_company_path, class: "btn btn-default", type: :button
+            .box-body
+              .dataTables_wrapper.form-inline.dt-bootstrap
+                .row
+                  .col-sm-12
+                    table.table.table-bordered.table-hover.dataTable
+                      th
+                        = check_box_tag 'check_all_box'
+                      th
+                        = t('admin.stock_companies.name')
+                      th
+                        = t('admin.stock_companies.info')
+                      th
+                      tbody
+                        - @stock_companies.each do |stock_company|
+                          tr
+                            td
+                              = check_box_tag "checked_item[#{stock_company.id}]", '', false, class: 'checked_item'
+                            td.col-sm-4
+                              h5
+                                = stock_company.name
+                            td.col-sm-7
+                              h5
+                                = stock_company.info
+                            td.col-sm-1
+                              = link_to t('views.admin.edit'), edit_admin_stock_company_path(stock_company), class: "btn btn-default"
                 = page_entries_info @stock_companies
-            = paginate @stock_companies
+              = paginate @stock_companies
