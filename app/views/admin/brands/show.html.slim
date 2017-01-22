@@ -1,0 +1,38 @@
+- breadcrumb :show_brand, @brand
+
+section.content
+  .row
+    .col-xs-6
+      .box
+        .box-header
+          .box-body
+            .dataTables_wrapper.form-inline.dt-bootstrap
+              .row
+                .col-sm-12
+                  table.table.table-bordered.table-striped.dataTable
+                    tbody
+                      tr
+                        th.col-sm-3
+                          = t('admin.brands.name')
+                        td
+                          = @brand.name
+                      tr
+                        th
+                          = t('admin.brands.code')
+                        td
+                          = @brand.code
+                      tr
+                        th
+                          = t('admin.brands.market_id')
+                        td
+                          = @brand.market_id
+                      tr
+                        th
+                          = t('admin.brands.field_id')
+                        td
+                          = @brand.field_id
+                      tr
+                        th
+                          = t('admin.brands.info')
+                        td
+                          = @brand.info

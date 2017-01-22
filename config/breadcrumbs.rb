@@ -17,6 +17,26 @@ crumb :edit_stock_company do |stock_company|
 	parent :stock_companies
 end
 
+crumb :brands do
+	link t('admin.brands.index'), admin_brands_path
+	parent :admin_root
+end
+
+crumb :new_brand do |brand|
+	link t('admin.brands.new'), new_admin_brand_path(brand)
+	parent :brands
+end
+
+crumb :show_brand do |brand|
+	link t('admin.brands.show'), admin_brand_path(brand)
+	parent :brands
+end
+
+crumb :edit_brand do |brand|
+	link t('admin.brands.edit'), edit_admin_brand_path(brand)
+	parent :brands
+end
+
 crumb :markets do
 	link t('admin.markets.index'), admin_markets_path
 	parent :admin_root

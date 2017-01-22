@@ -1,0 +1,11 @@
+ja:
+  activerecord:
+    models:
+      brand: 銘柄
+    attributes:
+      brand:
+        name: 銘柄名
+        code: 銘柄コード
+        field_id: 分野
+        market_id: 市場
+        info: 備考
