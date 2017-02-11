@@ -78,6 +78,7 @@ GEM
       railties (>= 3.2, < 5.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    google_visualr (2.5.1)
     gretel (3.0.9)
       rails (>= 3.1.0)
     hirb (0.7.3)
@@ -240,6 +241,7 @@ DEPENDENCIES
   devise
   devise-i18n
   font-awesome-rails
+  google_visualr (~> 2.5.1)
   gretel
   hirb
   jbuilder (~> 2.0)
