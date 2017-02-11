@@ -1,15 +1,28 @@
 section.content-header
   h1 TOP
 section.content
-  div.box
-    div.box-header.with-border
+  .row
+    .col-xs-6
+      .box.box-info
+        .box-header.with-border
+          h3.box-title 日経平均株価
+        .box-body
+          table.talbe.table-borderd.table-hover
+            #chart1
+              = render_chart @nikkei_average, 'chart1'
+    .col-xs-6
+      .box.box-danger
+        .box-header.with-border
+          h3.box-title JASDAQ平均
+        .box-body
+          table.talbe.table-borderd.table-hover
+            #chart2
+              = render_chart @jasdaq_average, 'chart2'
+  .box
+    .box-header.with-border
       h3.box-title graph_visualization
-    div.box-body
+    .box-body
       table.talbe.table-borderd.table-hover
         = link_to "arrange_name_category", visualize_index_path
         br
         = link_to "create_stock_comany", new_admin_stock_company_path
-
-
-
-
