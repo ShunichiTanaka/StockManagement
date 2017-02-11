@@ -14,4 +14,6 @@ ja:
       edit:          編集
       update:        更新
       destroy:       選択した項目を削除
+      nikkei:        日経平均株価
+      jasdaq:        JASDAQ平均
 
