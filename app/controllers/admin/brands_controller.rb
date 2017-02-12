@@ -24,8 +24,10 @@ class Admin::BrandsController < ApplicationController
 
   def show
     quandl = Quandls.new(@brand)
-    # 株価情報取得
-    result = quandl.quandl_client
+    quandl.quandl_client
+    brand_data = quandl.receive_stock_info
+    google_chart = GoogleChart.new
+    @brand_chart = google_chart.line_chart(brand_data, true)
   end
 
   def edit

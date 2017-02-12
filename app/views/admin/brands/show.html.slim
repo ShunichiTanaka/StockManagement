@@ -3,6 +3,15 @@
 section.content
   .row
     .col-xs-6
+      .box.box-info
+        .box-header.with-border
+          h3.box-title #{t('admin.brands.chart')}
+        .box-body
+          table.talbe.table-borderd.table-hover
+            #chart
+              = render_chart @brand_chart, 'chart'
+  .row
+    .col-xs-6
       .box
         .box-header
           .box-body

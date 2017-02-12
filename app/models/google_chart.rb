@@ -4,8 +4,8 @@ class GoogleChart
   end
 
   def line_chart(data, flag)
-  	line_types
-  	case flag
+    line_types
+    case flag
     when true
       data.each_with_index do |d, count|
         @data_table.set_cell(count, 0, d["date"].to_s)
