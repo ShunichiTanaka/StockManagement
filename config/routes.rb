@@ -42,6 +42,11 @@ Rails.application.routes.draw do
 		resource :stock_companies, only: [:destroy]
 		resources :trades, only: [:index, :show]
 		resources :users
+		resources :stock_analyses, only: [:index] do
+      collection do
+        post "analysis"
+      end
+    end
 	end
   # Example resource route with options:
   #   resources :products do
