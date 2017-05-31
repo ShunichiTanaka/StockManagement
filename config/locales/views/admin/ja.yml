@@ -1,19 +1,19 @@
 ja:
   views:
     admin:
-      top:           株式取引帳簿
-      user:          ユーザ管理
+      top: 株式取引帳簿
+      user: ユーザ管理
       stock_company: 証券会社管理
-      trade:         取引管理
+      trade: 取引管理
       stock_account: 口座管理
-      brand:         銘柄管理
-      field:         分野管理
-      market:        市場管理
-      new:           新規作成
-      submit:        登録
-      edit:          編集
-      update:        更新
-      destroy:       選択した項目を削除
-      nikkei:        日経平均株価
-      jasdaq:        JASDAQ平均
-
+      brand: 銘柄管理
+      field: 分野管理
+      market: 市場管理
+      stock_analysis: 株価分析
+      new: 新規作成
+      submit: 登録
+      edit: 編集
+      update: 更新
+      destroy: 選択した項目を削除
+      nikkei: 日経平均株価
+      jasdaq: JASDAQ平均
