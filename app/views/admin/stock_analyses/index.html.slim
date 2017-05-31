@@ -1,0 +1,8 @@
+section.content
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          = form_tag analysis_admin_stock_analyses_path, multipart: true do
+            = file_field_tag :file
+            = submit_tag "分析", class: "btn btn-primary btn-sm"

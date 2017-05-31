@@ -11,13 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161112203559) do
+ActiveRecord::Schema.define(version: 20170518000749) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
     t.integer  "code",       limit: 4,     null: false
-    t.integer  "field_id",   limit: 4,     null: false
-    t.integer  "market_id",  limit: 4,     null: false
     t.text     "info",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -32,7 +30,7 @@ ActiveRecord::Schema.define(version: 20161112203559) do
 
   create_table "markets", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
-    t.text     "info",       limit: 65535, null: false
+    t.text     "info",       limit: 65535
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -51,6 +49,19 @@ ActiveRecord::Schema.define(version: 20161112203559) do
     t.text     "info",       limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "stock_prices", force: :cascade do |t|
+    t.date     "target_date",             null: false
+    t.integer  "code",          limit: 4, null: false
+    t.integer  "market_id",     limit: 4, null: false
+    t.integer  "open",          limit: 4, null: false
+    t.integer  "high",          limit: 4, null: false
+    t.integer  "low",           limit: 4, null: false
+    t.integer  "close",         limit: 4, null: false
+    t.integer  "trading_value", limit: 8, null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "trades", force: :cascade do |t|

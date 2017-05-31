@@ -1,0 +1,54 @@
+- initialize = 0.4
+- while initialize <= 1.0 do
+  strong
+    = "乖離率：#{initialize.round(2)} ~ #{(initialize + 0.2).round(2)}"
+  br
+  table
+    tr
+      th
+        = "業種"
+      th
+        = "コード"
+      th
+        = "銘柄"
+      th
+        = "終値"
+      th
+        = "前日比"
+    - count = 0
+    - @data.each do |d|
+      - if d[:deviration] > initialize && d[:deviration] < initialize + 0.2 && d[:price] < 2300
+        - count += 1
+        tr
+          td
+            - if d[:code] >= 1300 && d[:code] < 1500
+              = "水/農".html_safe
+            - elsif d[:code] >= 1500 && d[:code] < 1700
+              = "鉱業"
+            - elsif d[:code] >= 1700 && d[:code] < 2000
+              = "建設"
+            - elsif d[:code] >= 2000 && d[:code] < 8000
+              = "製造"
+            - elsif d[:code] >= 8000 && d[:code] < 8300
+              = "商業"
+            - elsif d[:code] >= 8300 && d[:code] < 8800
+              = "金/保"
+            - elsif d[:code] >= 8800 && d[:code] < 9000
+              = "不動産"
+            - elsif d[:code] >= 9000 && d[:code] < 9500
+              = "運/情".html_safe
+            - elsif d[:code] >= 9500 && d[:code] < 9600
+              = "電/ガ".html_safe
+            - elsif d[:code] >= 9600
+              = "サー"
+          td style=d[:rate_up]
+            = "#{d[:code]}"
+          td
+            = "#{d[:name]}".truncate(6)
+          td style="text-align: right"
+            = "#{d[:price]}"
+          td style="#{d[:pre_ratio] > 0 ? "color: #0f0" : d[:pre_ratio].to_i < 0 ? "color: #f00" : "color: #fff" }; text-align: right"
+            = "#{d[:pre_ratio]}"
+  = "全#{count}件"
+  - initialize += 0.2
+  br
