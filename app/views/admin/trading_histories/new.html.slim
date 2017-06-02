@@ -1,0 +1,5 @@
+- breadcrumb :new_trading_history, @trading_history
+
+section.content
+  = form_for(@trading_history, url: admin_trading_histories_path) do |f|
+    = render partial: 'form', locals: { f: f, edit_flg: false }

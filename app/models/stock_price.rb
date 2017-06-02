@@ -2,16 +2,17 @@
 #
 # Table name: stock_prices
 #
-#  id          :integer          not null, primary key
-#  target_date :date             not null
-#  code        :integer          not null
-#  market_id   :integer          not null
-#  open        :integer          not null
-#  high        :integer          not null
-#  low         :integer          not null
-#  close       :integer          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id            :integer          not null, primary key
+#  target_date   :date             not null
+#  code          :integer          not null
+#  market_id     :integer          not null
+#  open          :integer          not null
+#  high          :integer          not null
+#  low           :integer          not null
+#  close         :integer          not null
+#  trading_value :integer          not null
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class StockPrice < ActiveRecord::Base
@@ -38,12 +39,10 @@ class StockPrice < ActiveRecord::Base
     def data_import(data, target_date)
       data.each do |d|
         next if d.include?(nil)
-        # コメント行は初回時に必要 ないと速度早い
         #brand = Brand.find_by(code: d[0].match(/\d*/)[0])
         #if brand.blank?
         #  Brand.create(name: d[1], code: d[0].match(/\d*/)[0].to_i)
         #end
-        # 新しい方法 これなら１行で済む
         # Brand.where(code: d[0].match(/\d*/)[0]).find_or_create
         market = Market.find_by(name: d[2])
         new_market = Market.create(name: d[2]) if market.blank?

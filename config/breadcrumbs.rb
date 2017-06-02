@@ -51,6 +51,21 @@ crumb :edit_market do |market|
 	link t('admin.markets.edit'), edit_admin_market_path(market)
 	parent :markets
 end
+
+crumb :trading_histories do
+	link t('admin.trading_histories.index'), admin_trading_histories_path
+	parent :admin_root
+end
+
+crumb :new_trading_history do |trading_history|
+	link t('admin.trading_histories.new'), new_admin_trading_history_path(trading_history)
+	parent :trading_histories
+end
+
+crumb :edit_trading_history do |trading_history|
+	link t('admin.trading_histories.edit'), edit_admin_trading_history_path(trading_history)
+	parent :trading_histories
+end
 # crumb :projects do
 #   link "Projects", projects_path
 # end

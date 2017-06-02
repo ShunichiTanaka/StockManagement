@@ -28,9 +28,6 @@ Rails.application.routes.draw do
 	resources :brands do
 	end
 
-	resources :trades do
-	end
-
 	# brands trades stock_accoujntsはユーザが登録する場合のみ(現状)
 	namespace :admin do
 		resources :brands, except: [:destroy]
@@ -40,7 +37,7 @@ Rails.application.routes.draw do
 		resources :stcok_accounts, only: [:index, :show]
 		resources :stock_companies, except: [:destroy]
 		resource :stock_companies, only: [:destroy]
-		resources :trades, only: [:index, :show]
+		resources :trading_histories, except: [:destroy]
 		resources :users
 		resources :stock_analyses, only: [:index] do
       collection do

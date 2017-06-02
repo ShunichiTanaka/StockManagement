@@ -1,0 +1,62 @@
+- breadcrumb :trading_histories
+
+section.content
+  .row
+    .col-xs-12
+      .box
+        .box-header
+          <!-- TODO  -->
+          = link_to t('views.admin.new'), new_admin_trading_history_path, class: "btn btn-default", type: :button
+        .box-body
+          .dataTables_wrapper.form-inline.dt-bootstrap
+            .row
+              .col-sm-12
+                table.table.table-bordered.table-hover.dataTable
+                  th.text-center
+                    = t('admin.trading_histories.purchase_date')
+                  th.text-center
+                    = t('admin.trading_histories.code')
+                  th.text-center
+                    = t('admin.trading_histories.name')
+                  th.text-center
+                    = t('admin.trading_histories.purchase_price')
+                  th.text-center
+                    = t('admin.trading_histories.stock_number')
+                  th.text-center
+                    = t('admin.trading_histories.disposal_date')
+                  th.text-center
+                    = t('admin.trading_histories.disposal_price')
+                  th.text-center
+                    = t('admin.trading_histories.profit')
+                  th
+                  tbody
+                    - @trading_histories.each do |trading_history|
+                      tr
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.purchase_date
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.code
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.name
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.purchase_price
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.stock_number
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.disposal_date
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.disposal_price
+                        td.col-sm-1.text-center
+                          h5
+                            = trading_history.profit
+                        td.col-sm-1.text-center
+                          = link_to t('views.admin.edit'), edit_admin_trading_history_path(trading_history), class: "btn btn-default"
+                = page_entries_info @trading_histories
+            = paginate @trading_histories

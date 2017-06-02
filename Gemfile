@@ -54,6 +54,10 @@ gem 'gretel'
 gem 'google_visualr', '~> 2.5.1'
 # write schema to model
 gem 'annotate'
+# bootstrap datepicker
+gem 'bootstrap-datetimepicker-rails'
+# using bootstrap datepicker
+gem 'momentjs-rails'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
