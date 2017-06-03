@@ -21,4 +21,13 @@ class TradingHistory < ActiveRecord::Base
   validates :code, presence: true, numericality: :only_integer
   validates :purchase_price, presence: true, numericality: :only_integer
   validates :stock_number, presence: true, numericality: :only_integer
+
+  scope :current_month_profit, -> {
+    where("DATE_FORMAT(disposal_date, '%Y%m') = DATE_FORMAT(NOW(), '%Y%m')")
+    .sum(:profit).to_s(:delimited)
+  }
+  scope :current_week_profit, -> {
+    where(disposal_date: [5.days.ago..Date.current])
+    .sum(:profit).to_s(:delimited)
+  }
 end
