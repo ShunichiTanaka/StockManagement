@@ -45,16 +45,10 @@ html
                     |　test
             li
               = link_to "#", class: "i fa fa-check-square"
-                = "　" + t('views.admin.trade')
-            li
-              = link_to "#", class: "i fa fa-check-square"
                 = "　" + t('views.admin.stock_account')
             li
               = link_to admin_stock_companies_path, class: "i fa fa-check-square"
                 = "　" + t('views.admin.stock_company')
-            li
-              = link_to admin_brands_path, class: "i fa fa-check-square"
-                = "　" + t('views.admin.brand')
             li
               = link_to "#", class: "i fa fa-check-square"
                 = "　" + t('views.admin.field')
@@ -62,8 +56,14 @@ html
               = link_to admin_markets_path, class: "i fa fa-check-square"
                 = "　" + t('views.admin.market')
             li
+              = link_to admin_brands_path, class: "i fa fa-check-square"
+                = "　" + t('views.admin.brands')
+            li
               = link_to admin_stock_analyses_path, class: "i fa fa-check-square"
                 = "　" + t('views.admin.stock_analysis')
+            li
+              = link_to admin_trading_histories_path, class: "i fa fa-check-square"
+                = "　" + t('views.admin.trading_history')
 
       div.content-wrapper
         section.content-header

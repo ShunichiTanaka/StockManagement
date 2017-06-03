@@ -1,0 +1,49 @@
+.col-md-12
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title
+        i.fa.fa-edit
+        |  Please input follows
+    form role="form"
+      .box-body
+        .form-group
+          div.row
+            .col-sm-2
+              = f.label :purchase_date
+            .col-sm-10
+              = f.text_field :purchase_date, class: "form-control datepicker"
+        .form-group
+          div.row
+            .col-sm-2
+              = f.label :code
+            .col-sm-10
+              = f.text_field :code, class: "form-control"
+        .form-group
+          div.row
+            .col-sm-2
+              = f.label :purchase_price
+            .col-sm-10
+              = f.text_field :purchase_price, class: "form-control"
+        .form-group
+          div.row
+            .col-sm-2
+              = f.label :stock_number
+            .col-sm-10
+              = f.text_field :stock_number, class: "form-control"
+        .form-group
+          div.row
+            .col-sm-2
+              = f.label :disposal_date
+            .col-sm-10
+              = f.text_field :disposal_date, class: "form-control datepicker"
+        .form-group
+          div.row
+            .col-sm-2
+              = f.label :disposal_price
+            .col-sm-10
+              = f.text_field :disposal_price, class: "form-control"
+      .box-footer.text-center
+        - if edit_flg == true
+          = f.submit t('views.admin.update'), class: "btn btn-primary"
+        - else
+          = f.submit t('views.admin.submit'), class: "btn btn-primary"

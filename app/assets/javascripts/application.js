@@ -18,3 +18,15 @@
 //= require turbolinks
 //= require admin-lte/bootstrap/js/bootstrap
 //= require admin-lte/dist/js/app
+//= require moment
+//= require bootstrap-datetimepicker
+
+$(function() {
+  $("input.datepicker").datetimepicker({
+    format: "yyyy/MM/dd",
+    icons: {
+            previous: "fa fa-arrow-left",
+            next: "fa fa-arrow-right"
+           }
+  });
+});

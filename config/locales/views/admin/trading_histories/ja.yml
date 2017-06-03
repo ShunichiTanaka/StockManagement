@@ -1,0 +1,14 @@
+ja:
+  admin:
+    trading_histories:
+      index: 取引履歴一覧
+      purchase_date: 購入日
+      code: コード
+      name: 銘柄名
+      purchase_price: 購入価格
+      stock_number: 株数
+      disposal_date: 売却日
+      disposal_price: 売却価格
+      profit: 損益
+      new: 新規作成
+      show: 詳細
