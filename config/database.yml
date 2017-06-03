@@ -9,7 +9,7 @@ default: &default
   encoding: utf8
   database: d3_product
   username: root
-  password: hety08tappirits
+  password: 
   pool: 5
   timeout: 5000
   socket: /var/lib/mysql/mysql.sock
