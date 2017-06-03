@@ -4,6 +4,35 @@ section.content
   .row
     .col-xs-12
       .box
+        br
+        .row
+          .col-sm-4
+            .small-box.bg-aqua
+              .inner
+                h3
+                  = @total_profit
+                p
+                  = t('admin.trading_histories.total_profit')
+              .icon
+                i.fa.fa-shopping-cart
+          .col-sm-4
+            .small-box.bg-green
+              .inner
+                h3
+                  = @current_month_profit
+                p
+                  = t('admin.trading_histories.current_month_profit')
+              .icon
+                i.fa.fa-line-chart
+          .col-sm-4
+            .small-box.bg-yellow
+              .inner
+                h3
+                  = @current_week_profit
+                p
+                  = t('admin.trading_histories.current_week_profit')
+              .icon
+                i.fa.fa-retweet
         .box-header
           <!-- TODO  -->
           = link_to t('views.admin.new'), new_admin_trading_history_path, class: "btn btn-default", type: :button
@@ -53,7 +82,7 @@ section.content
                         td.col-sm-1.text-center
                           h5
                             = trading_history.disposal_price
-                        td.col-sm-1.text-center
+                        td.col-sm-1.text-center style="color: #{trading_history.profit.to_i > 0 ? 'green' : 'red'}"
                           h5
                             = trading_history.profit
                         td.col-sm-1.text-center

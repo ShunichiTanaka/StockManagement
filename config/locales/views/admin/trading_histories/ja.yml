@@ -10,5 +10,8 @@ ja:
       disposal_date: 売却日
       disposal_price: 売却価格
       profit: 損益
+      total_profit: 総利益
+      current_month_profit: 当月利益
+      current_week_profit: 直近５日間利益
       new: 新規作成
       show: 詳細

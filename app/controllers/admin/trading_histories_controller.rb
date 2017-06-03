@@ -23,6 +23,9 @@ class Admin::TradingHistoriesController < ApplicationController
     @trading_histories.each do |t|
       t.name = Brand.find_by(code: t.code).try(:name)
     end
+    @total_profit = TradingHistory.sum(:profit).to_s(:delimited)
+    @current_month_profit = TradingHistory.current_month_profit
+    @current_week_profit = TradingHistory.current_week_profit
   end
 
   def edit
