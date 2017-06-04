@@ -4,6 +4,7 @@ class Admin::TradingHistoriesController < ApplicationController
 
   def new
     @trading_history = TradingHistory.new
+    @trading_history.purchase_date = Date.current
   end
 
   def create
@@ -20,9 +21,6 @@ class Admin::TradingHistoriesController < ApplicationController
 
   def index
     @trading_histories = TradingHistory.page(params[:page]).per(10).order("created_at DESC")
-    @trading_histories.each do |t|
-      t.name = Brand.find_by(code: t.code).try(:name)
-    end
     @total_profit = TradingHistory.sum(:profit).to_s(:delimited)
     @current_month_profit = TradingHistory.current_month_profit
     @current_week_profit = TradingHistory.current_week_profit

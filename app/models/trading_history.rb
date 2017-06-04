@@ -15,6 +15,8 @@
 #
 
 class TradingHistory < ActiveRecord::Base
+  belongs_to :brand, foreign_key: "code", primary_key: "code"
+
   attr_accessor :name
 
   validates :purchase_date, presence: true
