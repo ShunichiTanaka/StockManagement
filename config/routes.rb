@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
 	# brands trades stock_accoujntsはユーザが登録する場合のみ(現状)
 	namespace :admin do
-		resources :brands, except: [:destroy]
+		resources :brands, param: :code, except: [:destroy]
 		resource :brands, only: [:destroy]
 		resources :fields
 		resources :markets
