@@ -30,10 +30,10 @@ section.content
                               = check_box_tag "checked_item[#{brand.id}]", '', false, class: 'checked_item'
                             td
                               h5
-                                = link_to brand.name, admin_brand_path(brand)
+                                = link_to brand.code, admin_brand_path(brand.code)
                             td
                               h5
-                                = brand.code
+                                = brand.name
                             td
                               h5
                                 = brand.info

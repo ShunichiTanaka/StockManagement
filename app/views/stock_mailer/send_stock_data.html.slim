@@ -17,7 +17,7 @@
         = "前日比"
     - count = 0
     - @data.each do |d|
-      - if d[:deviration] > initialize && d[:deviration] < initialize + 0.2 && d[:price] < 2300
+      - if d[:deviration] > initialize && d[:deviration] < initialize + 0.2 && d[:price] < 2300 && d[:pre_ratio].abs > 5
         - count += 1
         tr
           td

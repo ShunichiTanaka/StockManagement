@@ -23,11 +23,11 @@ class Admin::BrandsController < ApplicationController
   end
 
   def show
-    quandl = Quandls.new(@brand)
-    quandl.quandl_client
-    brand_data = quandl.receive_stock_info
-    google_chart = GoogleChart.new
-    @brand_chart = google_chart.line_chart(brand_data, true)
+    #quandl = Quandls.new(@brand)
+    #quandl.quandl_client
+    #brand_data = quandl.receive_stock_info
+    #google_chart = GoogleChart.new
+    #@brand_chart = google_chart.line_chart(brand_data, true)
   end
 
   def edit
@@ -59,6 +59,6 @@ class Admin::BrandsController < ApplicationController
   end
 
   def get_brand
-    @brand = Brand.find(params[:id])
+    @brand = Brand.find_by(code: params[:code])
   end
 end
