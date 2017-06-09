@@ -28,6 +28,14 @@ class Admin::BrandsController < ApplicationController
     #brand_data = quandl.receive_stock_info
     #google_chart = GoogleChart.new
     #@brand_chart = google_chart.line_chart(brand_data, true)
+    @stock_price = StockPrice.where(code: params[:code]).last
+    yesterday_stock_price = StockPrice.where(code: params[:code])
+                                      .order("target_date DESC")
+                                      .offset(1)
+                                      .limit(1)
+                                      .first
+    @stock_price.ratio = @stock_price.close - yesterday_stock_price.close
+    @trading_histories = TradingHistory.where(code: params[:code])
   end
 
   def edit

@@ -2,11 +2,14 @@ ja:
   admin:
     brands:
       name: 銘柄名
-      code: 銘柄コード
-      field_id: 分野
-      market_id: 市場
+      code: コード
       info: 備考
       index: 銘柄一覧
-      new: 新規作成
       show: 銘柄詳細
-      chart: チャート
+      open: 始値
+      high: 高値
+      low: 安値
+      close: 終値
+      ratio: 前日比
+      trading_history: 取引履歴
+      bollinger_band: ボリンジャーバンド
