@@ -95,5 +95,8 @@ group :development, :test do
 
 	# Apply colors to Ruby objects for easy viewing
 	gem 'awesome_print'
+
+  # Static automatic code review
+  gem 'rubocop', require: false
 end
 

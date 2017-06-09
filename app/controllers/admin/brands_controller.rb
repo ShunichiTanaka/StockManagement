@@ -9,9 +9,9 @@ class Admin::BrandsController < ApplicationController
   def create
     @brand = Brand.new(set_brand)
     if @brand.save
-      # TODO error detail
+      # TODO: error detail
       flash[:notice] = ["create new brand"]
-      return render 'sample/index'
+      return render "sample/index"
     else
       flash[:alert] = @brand.errors.full_messages
       return redirect_to action: :new
@@ -23,11 +23,11 @@ class Admin::BrandsController < ApplicationController
   end
 
   def show
-    #quandl = Quandls.new(@brand)
-    #quandl.quandl_client
-    #brand_data = quandl.receive_stock_info
-    #google_chart = GoogleChart.new
-    #@brand_chart = google_chart.line_chart(brand_data, true)
+    # quandl = Quandls.new(@brand)
+    # quandl.quandl_client
+    # brand_data = quandl.receive_stock_info
+    # google_chart = GoogleChart.new
+    # @brand_chart = google_chart.line_chart(brand_data, true)
     @stock_price = StockPrice.where(code: params[:code]).last
     yesterday_stock_price = StockPrice.where(code: params[:code])
                                       .order("target_date DESC")
@@ -43,19 +43,19 @@ class Admin::BrandsController < ApplicationController
 
   def update
     if @brand.update(set_brand)
-      # TODO error detail
+      # TODO: error detail
       flash[:notice] = ["update brand"]
       redirect_to action: :index
     else
       flash[:alert] = @brand.errors.full_messages
-      render 'edit'
+      render "edit"
     end
   end
 
   def destroy
     checked_items = params[:checked_item].keys
     Brand.delete(checked_items)
-    # TODO message
+    # TODO: message
     flash[:notice] = ["delete brand"]
     redirect_to action: :index
   end

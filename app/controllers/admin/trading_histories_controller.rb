@@ -10,7 +10,7 @@ class Admin::TradingHistoriesController < ApplicationController
   def create
     @trading_history = TradingHistory.new(set_trading_history)
     if @trading_history.save
-      # TODO error detail
+      # TODO: error detail
       flash[:notice] = ["create new trading_history"]
       redirect_to action: "index"
     else
@@ -30,13 +30,13 @@ class Admin::TradingHistoriesController < ApplicationController
   end
 
   def update
-	 	if @trading_history.update(set_trading_history)
-      # TODO error detail
+    if @trading_history.update(set_trading_history)
+      # TODO: error detail
       flash[:notice] = ["update trading_history"]
       redirect_to action: "index"
     else
       flash[:alert] = @trading_history.errors.full_messages
-      render 'edit'
+      render "edit"
     end
   end
 
