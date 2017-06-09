@@ -16,6 +16,8 @@
 #
 
 class StockPrice < ActiveRecord::Base
+  attr_accessor :ratio
+
   scope :from_current_day, lambda { |days|
     group(:target_date)
     .order("target_date DESC")

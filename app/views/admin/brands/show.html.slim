@@ -2,36 +2,110 @@
 
 section.content
   .row
-    .col-xs-6
-      .box.box-info
-        .box-header.with-border
-          h3.box-title #{t('admin.brands.chart')}
-        .box-body
-          table.talbe.table-borderd.table-hover
-            #chart
-              /= render_chart @brand_chart, 'chart'
-  .row
-    .col-xs-6
+    .col-xs-12
       .box
         .box-header
+          h1
+            = "[#{@brand.code}] #{@brand.name}"
           .box-body
-            .dataTables_wrapper.form-inline.dt-bootstrap
+            .dataTables_wrapper
               .row
-                .col-sm-12
-                  table.table.table-bordered.table-striped.dataTable
-                    tbody
-                      tr
-                        th.col-sm-3
-                          = t('admin.brands.name')
-                        td
-                          = @brand.name
-                      tr
-                        th
-                          = t('admin.brands.code')
-                        td
-                          = @brand.code
-                      tr
-                        th
-                          = t('admin.brands.info')
-                        td
-                          = @brand.info
+                .col-sm-4
+                  .small-box.bg-aqua
+                    .inner
+                      h3
+                        = @stock_price.open.to_s(:delimited)
+                      p
+                        = t('admin.brands.open')
+                    .icon
+                      i.fa.fa-yen
+                .col-sm-4
+                  .small-box.bg-red
+                    .inner
+                      h3
+                        = @stock_price.high.to_s(:delimited)
+                      p
+                        = t('admin.brands.high')
+                    .icon
+                      i.fa.fa-line-chart
+                .col-sm-4
+                  .small-box.bg-yellow
+                    .inner
+                      h3
+                        = @stock_price.low.to_s(:delimited)
+                      p
+                        = t('admin.brands.low')
+                    .icon
+                      i.fa.fa-level-down
+                      i.fa.fa-level-down
+              .row
+                .col-sm-6
+                  .small-box.bg-blue
+                    .inner
+                      h3
+                        = @stock_price.close.to_s(:delimited)
+                      p
+                        = t('admin.brands.close')
+                    .icon
+                      i.fa.fa-signal
+                .col-sm-6
+                  .small-box.bg-green
+                    .inner
+                      h3
+                        = @stock_price.ratio
+                      p
+                        = t('admin.brands.ratio')
+                    .icon
+                      i.fa.fa-random
+          .row
+            .col-xs-6
+              .box
+                .box-header.with-border
+                  h3.box-title #{t('admin.brands.bollinger_band')}
+                .box-body
+                  table.talbe.table-borderd.table-hover
+                    #chart
+                      /= render_chart @brand_chart, 'chart'
+          .row
+            .col-xs-12
+              .box
+                .box-header.with-border
+                  h3.box-title #{t('admin.brands.trading_history')}
+                .box-body
+                  .dataTables_wrapper.form-inline.dt-bootstrap
+                    .row
+                      .col-sm-12
+                        table.table.table-bordered.table-striped.dataTable
+                          th.text-center
+                            = t('admin.trading_histories.purchase_date')
+                          th.text-center
+                            = t('admin.trading_histories.purchase_price')
+                          th.text-center
+                            = t('admin.trading_histories.stock_number')
+                          th.text-center
+                            = t('admin.trading_histories.disposal_date')
+                          th.text-center
+                            = t('admin.trading_histories.disposal_price')
+                          th.text-center
+                            = t('admin.trading_histories.profit')
+                          tbody
+                            - @trading_histories.each do |trading_history|
+                              tr
+                                td.col-sm-1.text-center
+                                  h5
+                                    = trading_history.purchase_date
+                                td.col-sm-1.text-center
+                                  h5
+                                    = trading_history.purchase_price
+                                td.col-sm-1.text-center
+                                  h5
+                                    = trading_history.stock_number
+                                td.col-sm-1.text-center
+                                  h5
+                                    = trading_history.disposal_date
+                                td.col-sm-1.text-center
+                                  h5
+                                    = trading_history.disposal_price
+                                td.col-sm-1.text-center style="color: #{trading_history.profit.to_i > 0 ? 'green' : 'red'}"
+                                  h5
+                                    = trading_history.profit
