@@ -1,17 +1,17 @@
 class Admin::MarketsController < ApplicationController
-  before_action :set_market, only: [:create]
-  before_action :get_market, only: [:show, :edit, :update]
+  before_action :store_market, only: [:create]
+  before_action :fetch_market, only: [:show, :edit, :update]
 
   def new
     @market = Market.new
   end
 
   def create
-    @market = Market.new(set_market)
+    @market = Market.new(store_market)
     if @market.save
       # TODO: error detail
       flash[:notice] = ["create new market"]
-      return render 'sample/index'
+      return render "sample/index"
     else
       flash[:alert] = @market.errors.full_messages
       return redirect_to action: :new
@@ -26,7 +26,7 @@ class Admin::MarketsController < ApplicationController
   end
 
   def update
-    if @market.update(set_market)
+    if @market.update(store_market)
       # TODO: error detail
       flash[:notice] = ["update market"]
       redirect_to action: :index
@@ -38,11 +38,11 @@ class Admin::MarketsController < ApplicationController
 
   private
 
-  def set_market
+  def store_market
     params.require(:market).permit(:name, :info)
   end
 
-  def get_market
+  def fetch_market
     @market = Market.find_by(id: params[:id])
   end
 end

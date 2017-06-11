@@ -20,7 +20,7 @@ class GoogleChart
       end
     end
     opts = { width: 550, height: 400, legend: "bottom" }
-    chart = GoogleVisualr::Interactive::LineChart.new(@data_table, opts)
+    GoogleVisualr::Interactive::LineChart.new(@data_table, opts)
   end
 
   private

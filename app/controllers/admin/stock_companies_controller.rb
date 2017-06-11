@@ -1,13 +1,13 @@
 class Admin::StockCompaniesController < ApplicationController
-  before_action :set_stock_company, only: [:create]
-  before_action :get_stock_company, only: [:show, :edit, :update]
+  before_action :store_stock_company, only: [:create]
+  before_action :fetch_stock_company, only: [:show, :edit, :update]
 
   def new
     @stock_company = StockCompany.new
   end
 
   def create
-    @stock_company = StockCompany.new(set_stock_company)
+    @stock_company = StockCompany.new(store_stock_company)
     if @stock_company.save
       # TODO: error detail
       flash[:notice] = ["create new stock company"]
@@ -26,7 +26,7 @@ class Admin::StockCompaniesController < ApplicationController
   end
 
   def update
-    if @stock_company.update(set_stock_company)
+    if @stock_company.update(store_stock_company)
       # TODO: error detail
       flash[:notice] = ["update stock company"]
       redirect_to action: :index
@@ -46,11 +46,11 @@ class Admin::StockCompaniesController < ApplicationController
 
   private
 
-  def set_stock_company
+  def store_stock_company
     params.require(:stock_company).permit(:name, :info)
   end
 
-  def get_stock_company
+  def fetch_stock_company
     @stock_company = StockCompany.find_by(id: params[:id])
   end
 end

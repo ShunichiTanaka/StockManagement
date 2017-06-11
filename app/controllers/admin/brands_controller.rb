@@ -1,13 +1,13 @@
 class Admin::BrandsController < ApplicationController
-  before_action :set_brand, only: [:create]
-  before_action :get_brand, only: [:show, :edit, :update]
+  before_action :store_brand, only: [:create]
+  before_action :fetch_brand, only: [:show, :edit, :update]
 
   def new
     @brand = Brand.new
   end
 
   def create
-    @brand = Brand.new(set_brand)
+    @brand = Brand.new(store_brand)
     if @brand.save
       # TODO: error detail
       flash[:notice] = ["create new brand"]
@@ -42,7 +42,7 @@ class Admin::BrandsController < ApplicationController
   end
 
   def update
-    if @brand.update(set_brand)
+    if @brand.update(store_brand)
       # TODO: error detail
       flash[:notice] = ["update brand"]
       redirect_to action: :index
@@ -62,11 +62,11 @@ class Admin::BrandsController < ApplicationController
 
   private
 
-  def set_brand
+  def store_brand
     params.require(:brand).permit(:name, :code, :field_id, :market_id, :info)
   end
 
-  def get_brand
+  def fetch_brand
     @brand = Brand.find_by(code: params[:code])
   end
 end

@@ -8,8 +8,8 @@ class Users::SessionsController < Devise::SessionsController
 
   # POST /resource/sign_in
   def create
-		# TODO: 認証は後で
-		render template: "sample/index"
+    # TODO: 認証は後で
+    render template: "sample/index"
   end
 
   # DELETE /resource/sign_out

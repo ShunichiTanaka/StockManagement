@@ -1,5 +1,4 @@
 class Admin::StockAnalysesController < ApplicationController
-
   def index
   end
 
@@ -8,7 +7,7 @@ class Admin::StockAnalysesController < ApplicationController
     csv_file = params[:file]
     if csv_file.present?
       target_date = csv_file.original_filename.match(/\d{4}-\d{2}-\d{2}/)[0].to_date
-      data = CSV.read(params[:file].path, encoding: 'Shift_JIS:UTF-8')[253..-1]
+      data = CSV.read(params[:file].path, encoding: "Shift_JIS:UTF-8")[253..-1]
       StockPrice.data_import(data, target_date)
     end
 
@@ -46,17 +45,17 @@ class Admin::StockAnalysesController < ApplicationController
     deviration_data = []
     brands.each do |b|
       if medium_stock_summary[b.code].present? && short_stock_summary[b.code].present? && long_stock_summary[b.code].present? &&
-        pre_medium_stock_summary[b.code].present? && pre_short_stock_summary[b.code].present?
+         pre_medium_stock_summary[b.code].present? && pre_short_stock_summary[b.code].present?
 
-        pre_deviration = (pre_medium_stock_summary[b.code] - pre_short_stock_summary[b.code])/pre_short_stock_summary[b.code] * 100
-        deviration = (medium_stock_summary[b.code] - short_stock_summary[b.code])/short_stock_summary[b.code] * 100
-        deviration_for_short = (long_stock_summary[b.code] - short_stock_summary[b.code])/short_stock_summary[b.code] * 100
+        pre_deviration = (pre_medium_stock_summary[b.code] - pre_short_stock_summary[b.code]) / pre_short_stock_summary[b.code] * 100
+        deviration = (medium_stock_summary[b.code] - short_stock_summary[b.code]) / short_stock_summary[b.code] * 100
+        deviration_for_short = (long_stock_summary[b.code] - short_stock_summary[b.code]) / short_stock_summary[b.code] * 100
         if deviration_for_short > 2.5
           today_stock = today_stock_summary.find { |d| d.code == b.code }
           today_price = if today_stock.present?
                           today_stock.close
                         else
-                          99999
+                          99_999
                         end
           yesterday_stock = yesterday_stock_summary.find_by(code: b.code)
           pre_ratio = if today_stock.present? && yesterday_stock.present?

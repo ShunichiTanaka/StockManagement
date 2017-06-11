@@ -11,14 +11,26 @@ AllCops:
   DisplayCopNames: true
 
 Rails:
-  Enabled: true
+  Enabled: false
 
 ################## Style ######################
 
 Style/Documentation:
   Enabled: false
 
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
 Style/AsciiComments:
+  Enabled: false
+
+Style/Next:
   Enabled: false
 
 Style/StringLiterals:
@@ -30,8 +42,14 @@ Style/MutableConstant:
 Style/RedundantReturn:
   Enabled: false
 
+Style/EmptyMethod:
+  Enabled: false
+
 Style/WordArray:
   MinSize: 3
+
+Style/SpaceBeforeBlockBraces:
+  Enabled: true
 
 Style/SpaceBeforeFirstArg:
   Exclude:
