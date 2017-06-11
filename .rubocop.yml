@@ -1,0 +1,85 @@
+AllCops:
+  Exclude:
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'test/**/*'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'public/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+  DisplayCopNames: true
+
+Rails:
+  Enabled: false
+
+################## Style ######################
+
+Style/Documentation:
+  Enabled: false
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/Lambda:
+  Enabled: false
+
+Style/AsciiComments:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/MutableConstant:
+  Enabled: false
+
+Style/RedundantReturn:
+  Enabled: false
+
+Style/EmptyMethod:
+  Enabled: false
+
+Style/WordArray:
+  MinSize: 3
+
+Style/SpaceBeforeBlockBraces:
+  Enabled: true
+
+Style/SpaceBeforeFirstArg:
+  Exclude:
+    - 'db/migrate/*.rb'
+
+################## Metrics #####################
+
+Metrics/AbcSize:
+  Max: 100
+  Exclude:
+
+Metrics/CyclomaticComplexity:
+  Max: 20
+  Exclude:
+
+Metrics/PerceivedComplexity:
+  Max: 20
+  Exclude:
+
+Metrics/BlockNesting:
+  Max: 5
+  Exclude:
+
+Metrics/LineLength:
+  Max: 160
+
+Metrics/MethodLength:
+  Max: 100
+  Exclude:
+
+Metrics/ClassLength:
+  Max: 500
+  Exclude:
