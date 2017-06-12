@@ -1,6 +1,7 @@
 {
   "name": "dsl-generated-dependencies",
   "dependencies": {
-    "admin-lte": "latest"
+    "admin-lte": "latest",
+    "chart.js": "latest"
   }
 }
