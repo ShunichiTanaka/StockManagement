@@ -20,6 +20,7 @@
 //= require admin-lte/dist/js/app
 //= require moment
 //= require bootstrap-datetimepicker
+//= require chart.js/dist/Chart.js
 
 $(function() {
   $("input.datepicker").datetimepicker({
