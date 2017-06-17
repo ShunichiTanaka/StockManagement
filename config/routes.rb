@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
 	# brands trades stock_accoujntsはユーザが登録する場合のみ(現状)
 	namespace :admin do
+    get :stock_price_to_chart, path: "brands/stock_price_to_chart", to: "brands#stock_price_to_chart", format: :json
 		resources :brands, param: :code, except: [:destroy]
 		resource :brands, only: [:destroy]
 		resources :fields

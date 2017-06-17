@@ -23,6 +23,18 @@
 //= require chart.js/dist/Chart.js
 
 $(function() {
+  var $body = $("body");
+  var controller = $body.data("controller").replace(/\//g, "_");
+  var action = $body.data("action");
+
+  var activeController = StockManagement[controller]
+
+  if (activeController !== undefined) {
+    if ($.isFunction(activeController[action])) {
+      activeController[action]();
+    }
+  }
+
   $("input.datepicker").datetimepicker({
     format: "yyyy/MM/dd",
     icons: {

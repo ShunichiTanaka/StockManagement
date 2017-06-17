@@ -64,6 +64,14 @@ section.content
                   h3.box-title #{t('admin.brands.bollinger_band')}
                 .box-body
                   table.talbe.table-borderd.table-hover
+                    div.chart id="#{@stock_price.code}"
+                      canvas#stock_price_chart
+            .col-xs-6
+              .box
+                .box-header.with-border
+                  h3.box-title #{t('admin.brands.bollinger_band')}
+                .box-body
+                  table.talbe.table-borderd.table-hover
                     #chart
                       /= render_chart @brand_chart, 'chart'
           .row

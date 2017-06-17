@@ -1,15 +1,13 @@
 html
   head
     title Adminlte
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
     = csrf_meta_tags
-    script src="http://www.google.com/jsapi"
 
-  body.skin-red
+  body.skin-red data-controller="#{controller.controller_path}" data-action="#{controller.action_name}"
     div.wrapper
       header.main-header
-        = link_to t('views.admin.top'), root_path, { class: "logo" }
+        = link_to t("views.admin.top"), root_path, { class: "logo" }
         nav.navbar.navbar-static-top role="navigation"
           a.sidebar-toggle data-toggle="offcanvas" role= "button"
           ul.nav.navbar-nav
@@ -30,7 +28,7 @@ html
             li.header 機能一覧
             li.treeview
               = link_to "#", class: "i fa fa-check-square"
-                = "　" + t('views.admin.user')
+                = "　" + t("views.admin.user")
                 span.pull-right-container
                   i.fa.fa-angle-left.pull-right
               ul.treeview-menu
@@ -45,37 +43,38 @@ html
                     |　test
             li
               = link_to "#", class: "i fa fa-check-square"
-                = "　" + t('views.admin.stock_account')
+                = "　" + t("views.admin.stock_account")
             li
               = link_to admin_stock_companies_path, class: "i fa fa-check-square"
-                = "　" + t('views.admin.stock_company')
+                = "　" + t("views.admin.stock_company")
             li
               = link_to "#", class: "i fa fa-check-square"
-                = "　" + t('views.admin.field')
+                = "　" + t("views.admin.field")
             li
               = link_to admin_markets_path, class: "i fa fa-check-square"
-                = "　" + t('views.admin.market')
+                = "　" + t("views.admin.market")
             li
               = link_to admin_brands_path, class: "i fa fa-check-square"
-                = "　" + t('views.admin.brands')
+                = "　" + t("views.admin.brands")
             li
               = link_to admin_stock_analyses_path, class: "i fa fa-check-square"
-                = "　" + t('views.admin.stock_analysis')
+                = "　" + t("views.admin.stock_analysis")
             li
               = link_to admin_trading_histories_path, class: "i fa fa-check-square"
-                = "　" + t('views.admin.trading_history')
+                = "　" + t("views.admin.trading_history")
 
       div.content-wrapper
         section.content-header
           h3
             == breadcrumbs separator: " / "
         - flash.each do |key, vals|
-          - key = key == 'notice' ? 'success' : 'danger'
+          - key = key == "notice" ? "success" : "danger"
           = content_tag :div, class: "alert alert-#{key}"
             - vals.each do |val|
               - concat content_tag :i, val, class: "icon fa fa-check"
-            - concat content_tag :button, "×", class: "close", 'data-dismiss' => 'alert'
+            - concat content_tag :button, "×", class: "close", "data-dismiss" => "alert"
         = yield
+        = javascript_include_tag "application", "data-turbolinks-track" => true
 
       footer.main-footer
         div.pull-right.hidden-xs Version1.0

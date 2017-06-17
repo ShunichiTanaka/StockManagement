@@ -28,7 +28,9 @@ class Admin::BrandsController < ApplicationController
     # brand_data = quandl.receive_stock_info
     # google_chart = GoogleChart.new
     # @brand_chart = google_chart.line_chart(brand_data, true)
-    @stock_price = StockPrice.where(code: params[:code]).last
+    @stock_price = StockPrice.where(code: params[:code])
+                             .order("target_date")
+                             .last
     yesterday_stock_price = StockPrice.where(code: params[:code])
                                       .order("target_date DESC")
                                       .offset(1)
@@ -58,6 +60,10 @@ class Admin::BrandsController < ApplicationController
     # TODO: message
     flash[:notice] = ["delete brand"]
     redirect_to action: :index
+  end
+
+  def stock_price_to_chart
+    render json: StockPrice.summary_brand(params[:code])
   end
 
   private
