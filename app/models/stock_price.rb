@@ -61,5 +61,39 @@ class StockPrice < ActiveRecord::Base
       return market.id if new_market.blank?
       new_market.id
     end
+
+    def summary_brand(code)
+      target_range = StockPrice.from_current_day(31).reverse
+      date_data = target_range.map { |d| d.strftime("%m/%d") }
+      summaries = where(code: code, target_date: target_range)
+                  .order("target_date desc").pluck(:close).reverse
+
+      {
+        labels: date_data,
+        datasets: generate_chart_js_options(summaries)
+      }
+    end
+
+    def generate_chart_js_options(summaries)
+      [{
+        fill: false,
+        lineTension: false,
+        backgroundColor: "rgba(255, 92, 132, 0.8)",
+        borderColor: "rgba(255, 92, 132, 0.8)",
+        borderWidth: 4,
+        borderJoinStyle: "round",
+        borderCapStyle: "butt",
+        pointBorderColor: "rgba(255, 92, 132, 0.8)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 92, 132, 0.8)",
+        pointHoverBorderColor: "rgba(255, 92, 132, 0.8)",
+        pointHoverBorderWidth: 3,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        data: summaries
+      }]
+    end
   end
 end
