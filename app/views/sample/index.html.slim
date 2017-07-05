@@ -9,7 +9,7 @@ section.content
         .box-body
           table.talbe.table-borderd.table-hover
             #chart1
-              = render_chart @nikkei_average, 'chart1'
+              /= render_chart @nikkei_average, 'chart1'
     .col-xs-6
       .box.box-danger
         .box-header.with-border
@@ -17,7 +17,56 @@ section.content
         .box-body
           table.talbe.table-borderd.table-hover
             #chart2
-              = render_chart @jasdaq_average, 'chart2'
+              /= render_chart @jasdaq_average, 'chart2'
+  .row
+    .col-sm-6
+      .box
+        .box-header.with-border
+          h3.box-title #{ t("views.admin.today_trading_amount_ranking")}
+        .box-body
+          table.talbe.table-borderd.table-striped
+            th.text-center
+              = t("views.admin.code")
+            th.text-center
+              = t("views.admin.brand_name")
+            th.text-center
+              = t("views.admin.value")
+            tbody
+              - @current_stocks.each do |current_stock|
+                tr
+                  td.col-sm-1.text-center
+                    h5
+                      = link_to current_stock.code, admin_brand_path(current_stock.code)
+                  td.col-sm-1.text-center
+                    h5
+                      = current_stock.brand.name
+                  td.col-sm-1.text-center
+                    h5
+                      = current_stock.trading_value.to_s(:delimited)
+    .col-sm-6
+      .box
+        .box-header.with-border
+          h3.box-title #{ t("views.admin.today_previous_day_ratio_ranking")}
+        .box-body
+          table.talbe.table-borderd.table-striped
+            th.text-center
+              = t("views.admin.code")
+            th.text-center
+              = t("views.admin.brand_name")
+            th.text-center
+              = t("views.admin.previous_ratio")
+            tbody
+              - @previous_stocks_ratio.each do |p_stock|
+                tr
+                  td.col-sm-1.text-center
+                    h5
+                      = link_to p_stock.code, admin_brand_path(p_stock.code)
+                  td.col-sm-1.text-center
+                    h5
+                      = p_stock.brand.name
+                  td.col-sm-1.text-center
+                    h5
+                      = p_stock.previous_price_ratio
   .box
     .box-header.with-border
       h3.box-title graph_visualization
