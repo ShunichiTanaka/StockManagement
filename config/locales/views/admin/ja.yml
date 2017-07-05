@@ -18,3 +18,9 @@ ja:
       destroy: 選択した項目を削除
       nikkei: 日経平均株価
       jasdaq: JASDAQ平均
+      today_trading_amount_ranking: 本日の取引額ランキング
+      today_previous_day_ratio_ranking: 前日比ランキング
+      code: コード
+      brand_name: 銘柄名
+      value: 取引額
+      previous_ratio: 前日比

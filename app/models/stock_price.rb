@@ -16,6 +16,8 @@
 #
 
 class StockPrice < ActiveRecord::Base
+  belongs_to :brand, foreign_key: "code", primary_key: "code"
+
   attr_accessor :ratio
 
   scope :from_current_day, lambda { |days|
@@ -94,6 +96,26 @@ class StockPrice < ActiveRecord::Base
         pointHitRadius: 10,
         data: summaries
       }]
+    end
+
+    def aggregate_previous_day_ratio
+      target_date = StockPrice.from_current_day(1)
+      target_yesterday = StockPrice.from_previous_day(1)
+      today_stock_summary = StockPrice.where(target_date: target_date)
+      yesterday_stock_summary = StockPrice.where(target_date: target_yesterday)
+      brands = Brand.all
+      brands.each do |brand|
+        target_brand = today_stock_summary.find_by(code: brand.code)
+        yesterday_target_brand = yesterday_stock_summary.find_by(code: brand.code)
+        if target_brand.present? && target_brand.close.present? && yesterday_target_brand.present? && yesterday_target_brand.close.present?
+          previous_price = target_brand.close - yesterday_target_brand.close
+          previous_price_ratio = (target_brand.close.to_f / yesterday_target_brand.close.to_f - 1) * 100
+          target_brand.update(
+            previous_price: previous_price,
+            previous_price_ratio: previous_price_ratio
+          )
+        end
+      end
     end
   end
 end

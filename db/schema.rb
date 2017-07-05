@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601135752) do
+ActiveRecord::Schema.define(version: 20170630161955) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -52,48 +52,21 @@ ActiveRecord::Schema.define(version: 20170601135752) do
   end
 
   create_table "stock_prices", force: :cascade do |t|
-    t.date     "target_date",             null: false
-    t.integer  "code",          limit: 4, null: false
-    t.integer  "market_id",     limit: 4, null: false
-    t.integer  "open",          limit: 4, null: false
-    t.integer  "high",          limit: 4, null: false
-    t.integer  "low",           limit: 4, null: false
-    t.integer  "close",         limit: 4, null: false
-    t.integer  "trading_value", limit: 8, null: false
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-  end
-
-  create_table "trades", force: :cascade do |t|
-    t.integer  "stock_account_id", limit: 4,     null: false
-    t.integer  "brand_id",         limit: 4,     null: false
-    t.integer  "status",           limit: 4,     null: false
-    t.date     "trade_at",                       null: false
-    t.integer  "contract_price",   limit: 4,     null: false
-    t.integer  "trade_sum",        limit: 4,     null: false
-    t.integer  "sales_price",      limit: 4,     null: false
-    t.integer  "charges",          limit: 4,     null: false
-    t.date     "payment_at"
-    t.integer  "payment_price",    limit: 4
-    t.float    "profit_ratio",     limit: 24
-    t.text     "info",             limit: 65535
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.date     "target_date",                     null: false
+    t.integer  "code",                 limit: 4,  null: false
+    t.integer  "market_id",            limit: 4,  null: false
+    t.integer  "open",                 limit: 4,  null: false
+    t.integer  "high",                 limit: 4,  null: false
+    t.integer  "low",                  limit: 4,  null: false
+    t.integer  "close",                limit: 4,  null: false
+    t.integer  "trading_value",        limit: 8,  null: false
+    t.integer  "previous_price",       limit: 4
+    t.float    "previous_price_ratio", limit: 24
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "trading_histories", force: :cascade do |t|
-    t.date     "purchase_date",            null: false
-    t.integer  "code",           limit: 4, null: false
-    t.integer  "purchase_price", limit: 4, null: false
-    t.integer  "stock_number",   limit: 4, null: false
-    t.date     "disposal_date"
-    t.integer  "disposal_price", limit: 4
-    t.integer  "profit",         limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
-  end
-
-  create_table "trading_history", force: :cascade do |t|
     t.date     "purchase_date",            null: false
     t.integer  "code",           limit: 4, null: false
     t.integer  "purchase_price", limit: 4, null: false
