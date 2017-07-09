@@ -109,7 +109,6 @@ class StockPrice < ActiveRecord::Base
     end
 
     def aggregate_previous_day_ratio
-      byebug
       today_stock_summary = where(target_date: from_current_day(1))
       yesterday_stock_summary = where(target_date: from_previous_day(1))
       brands = Brand.all
@@ -141,7 +140,7 @@ class StockPrice < ActiveRecord::Base
           # 平均
           mean = close_arr.sum.to_f / n
           # 偏差平方和
-          sum_of_squares = close_arr.inject(0) { |sum , i| sum + (i - mean) ** 2 }
+          sum_of_squares = close_arr.inject(0) { |sum, i| sum + (i - mean)**2 }
           # 分散
           distributed = sum_of_squares / n
           # 標準偏差
@@ -152,7 +151,7 @@ class StockPrice < ActiveRecord::Base
           res = n_average.to_f + (s * 2)
           # 当日の株価
           target_stock = where(target_date: from_current_day(1), code: brand.code).first
-          if target_stock.high >=  res && target_stock.low < res && res > 350 && res < 2500
+          if target_stock.high >= res && target_stock.low < res && res > 350 && res < 2500
             bollinger_data << { code: brand.code, name: brand.name, close: target_stock.close }
           end
         end
