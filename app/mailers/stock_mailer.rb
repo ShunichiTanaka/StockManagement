@@ -4,6 +4,12 @@ class StockMailer < ApplicationMailer
   def send_stock_data(data)
     @data = data
 
-    mail to: "@gmail.com", subject: Date.current
+    mail to: "", subject: Date.current
+  end
+
+  def send_bollinger_data(data)
+    @data = data
+
+    mail to: "", subject: "#{Date.current}のボリンジャー２α"
   end
 end
