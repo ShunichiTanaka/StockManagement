@@ -1,0 +1,22 @@
+  strong
+    = "ボリンジャーバンド 2α"
+  br
+  table
+    tr
+      th
+        = "コード"
+      th
+        = "銘柄"
+      th
+        = "終値"
+    - count = 0
+    - @data.each do |d|
+      - count += 1
+      tr
+        td
+          = "#{d[:code]}"
+        td
+          = "#{d[:name]}"
+        td
+          = "#{d[:close]}"
+  = "全#{count}件"

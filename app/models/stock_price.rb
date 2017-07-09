@@ -38,6 +38,16 @@ class StockPrice < ActiveRecord::Base
       .group(:code)
       .average(:close)
   }
+  scope :closing_prices, lambda { |code, range|
+    where(target_date: range)
+      .where(code: code)
+      .pluck(:close)
+  }
+  scope :target_summary, lambda { |code, range|
+    where(target_date: range)
+      .where(code: code)
+      .average(:close)
+  }
 
   class << self
     def data_import(data, target_date)
@@ -99,10 +109,9 @@ class StockPrice < ActiveRecord::Base
     end
 
     def aggregate_previous_day_ratio
-      target_date = StockPrice.from_current_day(1)
-      target_yesterday = StockPrice.from_previous_day(1)
-      today_stock_summary = StockPrice.where(target_date: target_date)
-      yesterday_stock_summary = StockPrice.where(target_date: target_yesterday)
+      byebug
+      today_stock_summary = where(target_date: from_current_day(1))
+      yesterday_stock_summary = where(target_date: from_previous_day(1))
       brands = Brand.all
       brands.each do |brand|
         target_brand = today_stock_summary.find_by(code: brand.code)
@@ -116,6 +125,39 @@ class StockPrice < ActiveRecord::Base
           )
         end
       end
+    end
+
+    def analyze_bollinger
+      # ボリンジャーバンド設定値
+      n = 20
+      long_target_range = from_current_day(n)
+      bollinger_data = []
+      brands = Brand.all
+      brands.each do |brand|
+        close_arr = closing_prices(brand.code, long_target_range)
+        if close_arr.count != n
+          next
+        else
+          # 平均
+          mean = close_arr.sum.to_f / n
+          # 偏差平方和
+          sum_of_squares = close_arr.inject(0) { |sum , i| sum + (i - mean) ** 2 }
+          # 分散
+          distributed = sum_of_squares / n
+          # 標準偏差
+          s = Math.sqrt(distributed)
+          # n日の移動平均
+          n_average = target_summary(brand.code, long_target_range)
+          # ２αのボリンジャーバンド
+          res = n_average.to_f + (s * 2)
+          # 当日の株価
+          target_stock = where(target_date: from_current_day(1), code: brand.code).first
+          if target_stock.high >=  res && target_stock.low < res && res > 350 && res < 2500
+            bollinger_data << { code: brand.code, name: brand.name, close: target_stock.close }
+          end
+        end
+      end
+      StockMailer.send_bollinger_data(bollinger_data).deliver
     end
   end
 end
