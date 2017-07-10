@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170630161955) do
+ActiveRecord::Schema.define(version: 20170709135804) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -62,6 +62,8 @@ ActiveRecord::Schema.define(version: 20170630161955) do
     t.integer  "trading_value",        limit: 8,  null: false
     t.integer  "previous_price",       limit: 4
     t.float    "previous_price_ratio", limit: 24
+    t.float    "twenty_average",       limit: 24
+    t.float    "standard_deviation",   limit: 24
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end

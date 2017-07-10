@@ -2,17 +2,21 @@
 #
 # Table name: stock_prices
 #
-#  id            :integer          not null, primary key
-#  target_date   :date             not null
-#  code          :integer          not null
-#  market_id     :integer          not null
-#  open          :integer          not null
-#  high          :integer          not null
-#  low           :integer          not null
-#  close         :integer          not null
-#  trading_value :integer          not null
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
+#  id                   :integer          not null, primary key
+#  target_date          :date             not null
+#  code                 :integer          not null
+#  market_id            :integer          not null
+#  open                 :integer          not null
+#  high                 :integer          not null
+#  low                  :integer          not null
+#  close                :integer          not null
+#  trading_value        :integer          not null
+#  previous_price       :integer
+#  previous_price_ratio :float(24)
+#  twenty_average       :float(24)
+#  standard_deviation   :float(24)
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
 #
 
 class StockPrice < ActiveRecord::Base
@@ -147,11 +151,15 @@ class StockPrice < ActiveRecord::Base
           s = Math.sqrt(distributed)
           # n日の移動平均
           n_average = target_summary(brand.code, long_target_range)
-          # ２αのボリンジャーバンド
-          res = n_average.to_f + (s * 2)
+          # 2αのボリンジャーバンド
+          res_2 = n_average.to_f + (s * 2)
+          # 3αのボリンジャーバンド
+          res_3 = n_average.to_f + (s * 3)
           # 当日の株価
           target_stock = where(target_date: from_current_day(1), code: brand.code).first
-          if target_stock.high >= res && target_stock.low < res && res > 350 && res < 2500
+
+          target_stock.update(twenty_average: n_average, standard_deviation: s)
+          if target_stock.high >= res_2 && target_stock.low < res_2 && res_2 > 350 && res_2 < 2500 && target_stock.close >= target_stock.open && res_3 >= target_stock.high.to_f
             bollinger_data << { code: brand.code, name: brand.name, close: target_stock.close }
           end
         end
