@@ -4,11 +4,15 @@ class SampleController < ApplicationController
   def index
     @current_stocks = StockPrice.where(target_date: StockPrice.from_current_day(1))
                                 .order("trading_value DESC")
-                                .limit(20)
-    @previous_stocks_ratio = StockPrice.where(target_date: StockPrice.from_current_day(1))
-                                       .where("previous_price_ratio IS NOT NULL")
-                                       .order("previous_price_ratio DESC")
-                                       .limit(20)
+                                .limit(40)
+    @previous_soaring = StockPrice.where(target_date: StockPrice.from_current_day(1))
+                                  .where("previous_price_ratio IS NOT NULL")
+                                  .order("previous_price_ratio DESC")
+                                  .limit(40)
+    @previous_droping = StockPrice.where(target_date: StockPrice.from_current_day(1))
+                                  .where("previous_price_ratio IS NOT NULL")
+                                  .order(:previous_price_ratio)
+                                  .limit(40)
   end
 
   def display_chart
