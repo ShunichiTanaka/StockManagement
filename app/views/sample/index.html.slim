@@ -19,11 +19,11 @@ section.content
             #chart2
               /= render_chart @jasdaq_average, 'chart2'
   .row
-    .col-sm-6
+    .col-sm-4
       .box
         .box-header.with-border
           h3.box-title #{ t("views.admin.today_trading_amount_ranking")}
-        .box-body
+        .box-body style="height: 600px; overflow-y: scroll"
           table.talbe.table-borderd.table-striped
             th.text-center
               = t("views.admin.code")
@@ -43,11 +43,11 @@ section.content
                   td.col-sm-1.text-center
                     h5
                       = current_stock.trading_value.to_s(:delimited)
-    .col-sm-6
+    .col-sm-4
       .box
         .box-header.with-border
-          h3.box-title #{ t("views.admin.today_previous_day_ratio_ranking")}
-        .box-body
+          h3.box-title #{ t("views.admin.today_previous_day_soaring_ratio")}
+        .box-body style="height: 600px; overflow-y: scroll"
           table.talbe.table-borderd.table-striped
             th.text-center
               = t("views.admin.code")
@@ -56,17 +56,41 @@ section.content
             th.text-center
               = t("views.admin.previous_ratio")
             tbody
-              - @previous_stocks_ratio.each do |p_stock|
+              - @previous_soaring.each do |p_surge|
                 tr
                   td.col-sm-1.text-center
                     h5
-                      = link_to p_stock.code, admin_brand_path(p_stock.code)
+                      = link_to p_surge.code, admin_brand_path(p_surge.code)
                   td.col-sm-1.text-center
                     h5
-                      = p_stock.brand.name
+                      = p_surge.brand.name
                   td.col-sm-1.text-center
                     h5
-                      = p_stock.previous_price_ratio
+                      = p_surge.previous_price_ratio
+    .col-sm-4
+      .box
+        .box-header.with-border
+          h3.box-title #{ t("views.admin.today_previous_day_droping_ratio")}
+        .box-body style="height: 600px; overflow-y: scroll"
+          table.talbe.table-borderd.table-striped
+            th.text-center
+              = t("views.admin.code")
+            th.text-center
+              = t("views.admin.brand_name")
+            th.text-center
+              = t("views.admin.previous_ratio")
+            tbody
+              - @previous_droping.each do |p_drop|
+                tr
+                  td.col-sm-1.text-center
+                    h5
+                      = link_to p_drop.code, admin_brand_path(p_drop.code)
+                  td.col-sm-1.text-center
+                    h5
+                      = p_drop.brand.name
+                  td.col-sm-1.text-center
+                    h5
+                      = p_drop.previous_price_ratio
   .box
     .box-header.with-border
       h3.box-title graph_visualization
