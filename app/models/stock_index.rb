@@ -14,4 +14,21 @@
 #
 
 class StockIndex < ActiveRecord::Base
+  class << self
+    def data_import(data, target_date)
+      nikkei = data[1][4]
+      topix = data[2][4]
+      two_department = data[4][4]
+      mothers = data[5][4]
+      jasdaq = data[92][4]
+      create(
+        target_date: target_date,
+        nikkei: nikkei,
+        topix: topix,
+        two_department: two_department,
+        mothers: mothers,
+        jasdaq: jasdaq
+      )
+    end
+  end
 end
