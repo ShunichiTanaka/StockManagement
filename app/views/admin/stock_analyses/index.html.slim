@@ -1,8 +1,20 @@
 section.content
   .row
-    .col-xs-12
+    .col-xs-6
       .box
         .box-header
+          h4
+            = "株価データ"
           = form_tag analysis_admin_stock_analyses_path, multipart: true do
             = file_field_tag :file
+            br
             = submit_tag "分析", class: "btn btn-primary btn-sm"
+    .col-xs-6
+      .box
+        .box-header
+          h4
+            = "指数データ"
+          = form_tag import_index_admin_stock_analyses_path, multipart: true do
+            = file_field_tag :file
+            br
+            = submit_tag "取り込み", class: "btn btn-primary btn-sm"

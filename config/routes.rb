@@ -43,6 +43,7 @@ Rails.application.routes.draw do
 		resources :stock_analyses, only: [:index] do
       collection do
         post "analysis"
+        post "import_index"
       end
     end
 	end

@@ -63,7 +63,7 @@ class StockPrice < ActiveRecord::Base
         end
         market = Market.find_by(name: d[2])
         new_market = Market.create(name: d[2]) if market.blank?
-        StockPrice.create(
+        create(
           target_date: target_date,
           code: d[0].match(/\d*/)[0],
           market_id: select_market(market, new_market),

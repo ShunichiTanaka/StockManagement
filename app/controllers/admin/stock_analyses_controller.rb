@@ -71,4 +71,16 @@ class Admin::StockAnalysesController < ApplicationController
     StockMailer.send_stock_data(deviration_data).deliver
     redirect_to action: "index"
   end
+
+ def import_index
+    csv_file = params[:file]
+    if csv_file.present?
+      target_date = csv_file.original_filename.match(/\d{4}-\d{2}-\d{2}/)[0].to_date
+      if StockIndex.exists?(target_date: target_date)
+        data = CSV.read(params[:file].path, encoding: "Shift_JIS:UTF-8")
+        StockIndex.data_import(data, target_date)
+      end
+    end
+    redirect_to action: "index"
+ end
 end
