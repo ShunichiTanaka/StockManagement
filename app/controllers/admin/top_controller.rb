@@ -1,4 +1,4 @@
-class SampleController < ApplicationController
+class Admin::TopController < ApplicationController
   before_action :display_chart, only: [:index]
 
   def index

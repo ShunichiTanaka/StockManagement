@@ -1,5 +1,5 @@
 crumb :admin_root do
-	link 'TOP', root_path
+	link 'TOP', admin_root_path
 end
 
 crumb :stock_companies do

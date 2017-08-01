@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 
-	root 'sample#index'
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
@@ -30,6 +29,7 @@ Rails.application.routes.draw do
 
 	# brands trades stock_accoujntsはユーザが登録する場合のみ(現状)
 	namespace :admin do
+    root 'top#index'
     get :stock_price_to_chart, path: "brands/stock_price_to_chart", to: "brands#stock_price_to_chart", format: :json
 		resources :brands, param: :code, except: [:destroy]
 		resource :brands, only: [:destroy]
