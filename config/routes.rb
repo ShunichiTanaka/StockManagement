@@ -31,6 +31,7 @@ Rails.application.routes.draw do
 	namespace :admin do
     root 'top#index'
     get :stock_price_to_chart, path: "brands/stock_price_to_chart", to: "brands#stock_price_to_chart", format: :json
+    get :index_to_chart, path: "top/index_to_chart", to: "top#index_to_chart", format: :json
 		resources :brands, param: :code, except: [:destroy]
 		resource :brands, only: [:destroy]
 		resources :fields

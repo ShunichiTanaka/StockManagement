@@ -8,16 +8,14 @@ section.content
           h3.box-title #{ t('views.admin.nikkei') }
         .box-body
           table.talbe.table-borderd.table-hover
-            #chart1
-              /= render_chart @nikkei_average, 'chart1'
+            canvas#nikkei_chart
     .col-xs-6
       .box.box-danger
         .box-header.with-border
           h3.box-title #{ t('views.admin.jasdaq') }
         .box-body
           table.talbe.table-borderd.table-hover
-            #chart2
-              /= render_chart @jasdaq_average, 'chart2'
+            canvas#jasdaq_chart
   .row
     .col-sm-4
       .box

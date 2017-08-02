@@ -14,6 +14,12 @@
 #
 
 class StockIndex < ActiveRecord::Base
+  scope :from_current_day, lambda { |days|
+    group(:target_date)
+      .order("target_date DESC")
+      .limit(days)
+      .pluck(:target_date)
+  }
   class << self
     def data_import(data, target_date)
       nikkei = data[1][4]
@@ -29,6 +35,39 @@ class StockIndex < ActiveRecord::Base
         mothers: mothers,
         jasdaq: jasdaq
       )
+    end
+
+    def summary(index_name)
+      target_range = from_current_day(31).reverse
+      date_data = target_range.map { |d| d.strftime("%m/%d") }
+      summaries = where(target_date: target_range).pluck("#{index_name}")
+
+      {
+        labels: date_data,
+        datasets: generate_chart_js_options(summaries)
+      }
+    end
+
+    def generate_chart_js_options(summaries)
+      [{
+        fill: false,
+        lineTension: false,
+        backgroundColor: "rgba(255, 92, 132, 0.8)",
+        borderColor: "rgba(255, 92, 132, 0.8)",
+        borderWidth: 4,
+        borderJoinStyle: "round",
+        borderCapStyle: "butt",
+        pointBorderColor: "rgba(255, 92, 132, 0.8)",
+        pointBackgroundColor: "#fff",
+        pointBorderWidth: 1,
+        pointHoverRadius: 3,
+        pointHoverBackgroundColor: "rgba(255, 92, 132, 0.8)",
+        pointHoverBorderColor: "rgba(255, 92, 132, 0.8)",
+        pointHoverBorderWidth: 3,
+        pointRadius: 4,
+        pointHitRadius: 10,
+        data: summaries
+      }]
     end
   end
 end
