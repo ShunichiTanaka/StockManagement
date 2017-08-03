@@ -2,14 +2,21 @@ section.content-header
   h1 TOP
 section.content
   .row
-    .col-xs-6
+    .col-xs-4
       .box.box-info
         .box-header.with-border
           h3.box-title #{ t('views.admin.nikkei') }
         .box-body
           table.talbe.table-borderd.table-hover
             canvas#nikkei_chart
-    .col-xs-6
+    .col-xs-4
+      .box.box-success
+        .box-header.with-border
+          h3.box-title #{ t('views.admin.mothers') }
+        .box-body
+          table.talbe.table-borderd.table-hover
+            canvas#mothers_chart
+    .col-xs-4
       .box.box-danger
         .box-header.with-border
           h3.box-title #{ t('views.admin.jasdaq') }

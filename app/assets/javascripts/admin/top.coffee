@@ -2,6 +2,7 @@ class AdminTopController
   index: ->
     index_summary("nikkei")
     index_summary("jasdaq")
+    index_summary("mothers")
 
   index_summary = (index_name) ->
     $.ajax({

@@ -44,25 +44,25 @@ class StockIndex < ActiveRecord::Base
 
       {
         labels: date_data,
-        datasets: generate_chart_js_options(summaries)
+        datasets: generate_chart_js_options(summaries, index_name)
       }
     end
 
-    def generate_chart_js_options(summaries)
+    def generate_chart_js_options(summaries, index_name)
       [{
         fill: false,
         lineTension: false,
-        backgroundColor: "rgba(255, 92, 132, 0.8)",
-        borderColor: "rgba(255, 92, 132, 0.8)",
+        backgroundColor: Settings.color[index_name],
+        borderColor: Settings.color[index_name],
         borderWidth: 4,
         borderJoinStyle: "round",
         borderCapStyle: "butt",
-        pointBorderColor: "rgba(255, 92, 132, 0.8)",
+        pointBorderColor: Settings.color[index_name],
         pointBackgroundColor: "#fff",
         pointBorderWidth: 1,
         pointHoverRadius: 3,
-        pointHoverBackgroundColor: "rgba(255, 92, 132, 0.8)",
-        pointHoverBorderColor: "rgba(255, 92, 132, 0.8)",
+        pointHoverBackgroundColor: Settings.color[index_name],
+        pointHoverBorderColor: Settings.color[index_name],
         pointHoverBorderWidth: 3,
         pointRadius: 4,
         pointHitRadius: 10,
