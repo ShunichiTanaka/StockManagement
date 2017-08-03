@@ -1,4 +1,4 @@
-class SampleController < ApplicationController
+class Admin::TopController < ApplicationController
   before_action :display_chart, only: [:index]
 
   def index
@@ -23,5 +23,9 @@ class SampleController < ApplicationController
     # @nikkei_average = google_chart_nikkei.line_chart(nikkei_data.reverse, false)
     google_chart_jasdaq = GoogleChart.new
     # @jasdaq_average = google_chart_jasdaq.line_chart(jasdaq_data.reverse, true)
+  end
+
+  def index_to_chart
+    render json: StockIndex.summary(params[:index_name])
   end
 end

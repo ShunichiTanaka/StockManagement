@@ -2,22 +2,27 @@ section.content-header
   h1 TOP
 section.content
   .row
-    .col-xs-6
+    .col-xs-4
       .box.box-info
         .box-header.with-border
           h3.box-title #{ t('views.admin.nikkei') }
         .box-body
           table.talbe.table-borderd.table-hover
-            #chart1
-              /= render_chart @nikkei_average, 'chart1'
-    .col-xs-6
+            canvas#nikkei_chart
+    .col-xs-4
+      .box.box-success
+        .box-header.with-border
+          h3.box-title #{ t('views.admin.mothers') }
+        .box-body
+          table.talbe.table-borderd.table-hover
+            canvas#mothers_chart
+    .col-xs-4
       .box.box-danger
         .box-header.with-border
           h3.box-title #{ t('views.admin.jasdaq') }
         .box-body
           table.talbe.table-borderd.table-hover
-            #chart2
-              /= render_chart @jasdaq_average, 'chart2'
+            canvas#jasdaq_chart
   .row
     .col-sm-4
       .box

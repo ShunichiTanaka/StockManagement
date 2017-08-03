@@ -17,7 +17,8 @@ ja:
       update: 更新
       destroy: 選択した項目を削除
       nikkei: 日経平均株価
-      jasdaq: JASDAQ平均
+      mothers: 東証マザーズ指数
+      jasdaq: JASDAQ指数
       today_trading_amount_ranking: 本日の取引額ランキング
       today_previous_day_soaring_ratio: 前日比急騰ランキング
       today_previous_day_droping_ratio: 前日比急落ランキング
