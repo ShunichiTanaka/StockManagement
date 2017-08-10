@@ -13,6 +13,10 @@ class Admin::TopController < ApplicationController
                                   .where("previous_price_ratio IS NOT NULL")
                                   .order(:previous_price_ratio)
                                   .limit(40)
+    indices = StockIndex.where(target_date: StockIndex.from_current_day(2))
+    @previous_nikkei_ratio = indices[1].nikkei - indices[0].nikkei
+    @previous_mothers_ratio = indices[1].mothers - indices[0].mothers
+    @previous_jasdaq_ratio = indices[1].jasdaq - indices[0].jasdaq
   end
 
   def display_chart

@@ -6,6 +6,9 @@ section.content
       .box.box-info
         .box-header.with-border
           h3.box-title #{ t('views.admin.nikkei') }
+          h3.box-title.pull-right
+            b
+              = number_with_precision(@previous_nikkei_ratio, precision: 2)
         .box-body
           table.talbe.table-borderd.table-hover
             canvas#nikkei_chart
@@ -13,6 +16,9 @@ section.content
       .box.box-success
         .box-header.with-border
           h3.box-title #{ t('views.admin.mothers') }
+          h3.box-title.pull-right
+            b
+              = number_with_precision(@previous_mothers_ratio, precision: 2)
         .box-body
           table.talbe.table-borderd.table-hover
             canvas#mothers_chart
@@ -20,6 +26,9 @@ section.content
       .box.box-danger
         .box-header.with-border
           h3.box-title #{ t('views.admin.jasdaq') }
+          h3.box-title.pull-right
+            b
+              = number_with_precision(@previous_jasdaq_ratio, precision: 2)
         .box-body
           table.talbe.table-borderd.table-hover
             canvas#jasdaq_chart
