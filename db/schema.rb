@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170714140517) do
+ActiveRecord::Schema.define(version: 20170727135358) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -49,6 +49,17 @@ ActiveRecord::Schema.define(version: 20170714140517) do
     t.text     "info",       limit: 65535, null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
+  end
+
+  create_table "stock_indices", force: :cascade do |t|
+    t.date     "target_date",               null: false
+    t.float    "nikkei",         limit: 24, null: false
+    t.float    "topix",          limit: 24, null: false
+    t.float    "mothers",        limit: 24, null: false
+    t.float    "jasdaq",         limit: 24, null: false
+    t.float    "two_department", limit: 24, null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
   end
 
   create_table "stock_prices", force: :cascade do |t|
