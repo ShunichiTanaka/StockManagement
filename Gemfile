@@ -59,6 +59,8 @@ gem "bootstrap-datetimepicker-rails"
 gem "momentjs-rails"
 # Easiest way to add multi-environment yaml settings to Rails
 gem "config"
+# Object-based searching
+gem "ransack"
 # Use ActiveModel has_secure_password
 # gem "bcrypt", "~> 3.1.7"
 

@@ -20,7 +20,8 @@ class Admin::TradingHistoriesController < ApplicationController
   end
 
   def index
-    @trading_histories = TradingHistory.page(params[:page]).per(10).order("created_at DESC")
+    @q = TradingHistory.ransack(params[:q])
+    @trading_histories = @q.result.page(params[:page]).per(10).order("created_at DESC")
     @total_profit = TradingHistory.sum(:profit).to_s(:delimited)
     @current_month_profit = TradingHistory.current_month_profit
     @current_week_profit = TradingHistory.current_week_profit

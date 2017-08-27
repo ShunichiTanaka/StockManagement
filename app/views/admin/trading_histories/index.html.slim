@@ -42,7 +42,7 @@ section.content
               .col-sm-12
                 table.table.table-bordered.table-hover.dataTable
                   th.text-center
-                    = t('admin.trading_histories.purchase_date')
+                    = sort_link @q, :purchase_date
                   th.text-center
                     = t('admin.trading_histories.code')
                   th.text-center
@@ -52,11 +52,11 @@ section.content
                   th.text-center
                     = t('admin.trading_histories.stock_number')
                   th.text-center
-                    = t('admin.trading_histories.disposal_date')
+                    = sort_link @q, :disposal_date
                   th.text-center
                     = t('admin.trading_histories.disposal_price')
                   th.text-center
-                    = t('admin.trading_histories.profit')
+                    = sort_link @q, :profit
                   th
                   tbody
                     - @trading_histories.each do |trading_history|
