@@ -72,7 +72,7 @@ class Admin::StockAnalysesController < ApplicationController
     redirect_to action: "index"
   end
 
- def import_index
+  def import_index
     csv_file = params[:file]
     if csv_file.present?
       target_date = csv_file.original_filename.match(/\d{4}-\d{2}-\d{2}/)[0].to_date
@@ -82,5 +82,5 @@ class Admin::StockAnalysesController < ApplicationController
       end
     end
     redirect_to action: "index"
- end
+  end
 end

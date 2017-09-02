@@ -137,30 +137,28 @@ class StockPrice < ActiveRecord::Base
       brands = Brand.all
       brands.each do |brand|
         close_arr = closing_prices(brand.code, long_target_range)
-        if close_arr.count != n
-          next
-        else
-          # 平均
-          mean = close_arr.sum.to_f / n
-          # 偏差平方和
-          sum_of_squares = close_arr.inject(0) { |sum, i| sum + (i - mean)**2 }
-          # 分散
-          distributed = sum_of_squares / n
-          # 標準偏差
-          s = Math.sqrt(distributed)
-          # n日の移動平均
-          n_average = target_summary(brand.code, long_target_range)
-          # 2αのボリンジャーバンド
-          res_2 = n_average.to_f + (s * 2)
-          # 3αのボリンジャーバンド
-          res_3 = n_average.to_f + (s * 3)
-          # 当日の株価
-          target_stock = where(target_date: from_current_day(1), code: brand.code).first
+        next if close_arr.count != n
+        # 平均
+        mean = close_arr.sum.to_f / n
+        # 偏差平方和
+        sum_of_squares = close_arr.inject(0) { |sum, i| sum + (i - mean)**2 }
+        # 分散
+        distributed = sum_of_squares / n
+        # 標準偏差
+        s = Math.sqrt(distributed)
+        # n日の移動平均
+        n_average = target_summary(brand.code, long_target_range)
+        # 2αのボリンジャーバンド
+        res_second = n_average.to_f + (s * 2)
+        # 3αのボリンジャーバンド
+        res_third = n_average.to_f + (s * 3)
+        # 当日の株価
+        target_stock = where(target_date: from_current_day(1), code: brand.code).first
 
-          target_stock.update(twenty_average: n_average, standard_deviation: s)
-          if target_stock.high >= res_2 && target_stock.low < res_2 && res_2 > 350 && res_2 < 2500 && target_stock.close >= target_stock.open && res_3 >= target_stock.high.to_f
-            bollinger_data << { code: brand.code, name: brand.name, close: target_stock.close }
-          end
+        target_stock.update(twenty_average: n_average, standard_deviation: s)
+        if target_stock.high >= res_second && target_stock.low < res_second \
+          && res_second > 350 && res_second < 2500 && target_stock.close >= target_stock.open && res_third >= target_stock.high.to_f
+          bollinger_data << { code: brand.code, name: brand.name, close: target_stock.close }
         end
       end
       StockMailer.send_bollinger_data(bollinger_data).deliver
