@@ -40,7 +40,7 @@ class StockIndex < ActiveRecord::Base
     def summary(index_name)
       target_range = from_current_day(31).reverse
       date_data = target_range.map { |d| d.strftime("%m/%d") }
-      summaries = where(target_date: target_range).pluck("#{index_name}")
+      summaries = where(target_date: target_range).pluck(index_name.to_s)
 
       {
         labels: date_data,
