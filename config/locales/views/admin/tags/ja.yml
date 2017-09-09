@@ -1,0 +1,8 @@
+ja:
+  admin:
+    tags:
+      name: タグ名
+      info: 備考
+      index: タグ一覧
+      new: 新規作成
+      show: タグ詳細
