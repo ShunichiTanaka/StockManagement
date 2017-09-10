@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170909050720) do
+ActiveRecord::Schema.define(version: 20170910080301) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -89,6 +89,16 @@ ActiveRecord::Schema.define(version: 20170909050720) do
     t.datetime "updated_at",               null: false
   end
 
+  create_table "trade_tags", force: :cascade do |t|
+    t.integer  "trading_history_id", limit: 8
+    t.integer  "tag_id",             limit: 8
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "trade_tags", ["tag_id"], name: "index_trade_tags_on_tag_id", using: :btree
+  add_index "trade_tags", ["trading_history_id"], name: "index_trade_tags_on_trading_history_id", using: :btree
+
   create_table "trading_histories", force: :cascade do |t|
     t.date     "purchase_date",              null: false
     t.integer  "code",           limit: 4,   null: false
@@ -97,6 +107,7 @@ ActiveRecord::Schema.define(version: 20170909050720) do
     t.date     "disposal_date"
     t.integer  "disposal_price", limit: 4
     t.integer  "profit",         limit: 4
+    t.string   "tag",            limit: 255
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
   end
@@ -128,4 +139,6 @@ ActiveRecord::Schema.define(version: 20170909050720) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "trade_tags", "tags"
+  add_foreign_key "trade_tags", "trading_histories"
 end

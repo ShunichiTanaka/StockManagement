@@ -10,12 +10,17 @@
 #  disposal_date  :date
 #  disposal_price :integer
 #  profit         :integer
+#  tag            :string(255)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #
 
 class TradingHistory < ActiveRecord::Base
+  has_many :tags, through: :trade_tags
+  has_many :trade_tags
   belongs_to :brand, foreign_key: "code", primary_key: "code"
+
+  accepts_nested_attributes_for :trade_tags, allow_destroy: true
 
   attr_accessor :name
 

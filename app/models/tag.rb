@@ -11,6 +11,9 @@
 #
 
 class Tag < ActiveRecord::Base
+  has_many :trading_histories, through: :trade_tags
+  has_many :trade_tags
+
   validates :name, presence: true
   validates :color, presence: true
 end
