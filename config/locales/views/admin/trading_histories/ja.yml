@@ -9,6 +9,7 @@ ja:
       stock_number: 株数
       disposal_date: 売却日
       disposal_price: 売却価格
+      tag: タグ
       profit: 損益
       total_profit: 総利益
       current_month_profit: 当月利益

@@ -22,7 +22,8 @@ class TradingHistory < ActiveRecord::Base
 
   accepts_nested_attributes_for :trade_tags, allow_destroy: true
 
-  attr_accessor :name
+  # attr_accessor :name
+  attr_accessor :tag_ids
 
   validates :purchase_date, presence: true
   validates :code, presence: true, numericality: :only_integer
@@ -37,4 +38,17 @@ class TradingHistory < ActiveRecord::Base
     where(disposal_date: [5.days.ago..Date.current])
       .sum(:profit).to_s(:delimited)
   }
+
+  def save_tags
+    old_tags = tags.pluck(:tag_id).map(&:to_s)
+    new_tags = tag_ids if tag_ids.present?
+    current_tags = new_tags - old_tags if new_tags
+    old_tags = old_tags - new_tags if new_tags
+    current_tags.each do |current_tag|
+      TradeTag.create(trading_history_id: id, tag_id: current_tag)
+    end
+    old_tags.each do |old_tag|
+      TradeTag.where(trading_history_id: id, tag_id: old_tag).destroy_all
+    end
+  end
 end
