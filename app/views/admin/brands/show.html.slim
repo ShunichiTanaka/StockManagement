@@ -95,6 +95,8 @@ section.content
                           th.text-center
                             = t('admin.trading_histories.disposal_price')
                           th.text-center
+                            = t('admin.trading_histories.tag')
+                          th.text-center
                             = t('admin.trading_histories.profit')
                           tbody
                             - @trading_histories.each do |trading_history|
@@ -114,6 +116,11 @@ section.content
                                 td.col-sm-1.text-center
                                   h5
                                     = trading_history.disposal_price
+                                td.col-sm-1.text-center
+                                  h5
+                                    - trading_history.tags.each do |tag|
+                                      .label style="background-color: #{ tag.color }"
+                                         = tag.name
                                 td.col-sm-1.text-center style="color: #{trading_history.profit.to_i > 0 ? 'green' : 'red'}"
                                   h5
                                     = trading_history.profit
