@@ -42,8 +42,8 @@ class TradingHistory < ActiveRecord::Base
   def save_tags
     old_tags = tags.pluck(:tag_id).map(&:to_s)
     new_tags = tag_ids if tag_ids.present?
-    current_tags = new_tags - old_tags if new_tags
-    old_tags = old_tags - new_tags if new_tags
+    current_tags = new_tags.present? ? new_tags - old_tags : []
+    old_tags -= new_tags if new_tags
     current_tags.each do |current_tag|
       TradeTag.create(trading_history_id: id, tag_id: current_tag)
     end

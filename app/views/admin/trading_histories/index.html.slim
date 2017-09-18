@@ -71,7 +71,7 @@ section.content
                             = link_to trading_history.code, admin_brand_path(trading_history.code)
                         td.col-sm-1.text-center
                           h5
-                            = trading_history.brand.name
+                            = trading_history.brand.try(:name)
                         td.col-sm-1.text-center
                           h5
                             = trading_history.purchase_price

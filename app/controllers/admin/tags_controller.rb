@@ -39,7 +39,7 @@ class Admin::TagsController < ApplicationController
   private
 
   def store_tag
-    params.require(:tag).permit(:name, :color,  :info)
+    params.require(:tag).permit(:name, :color, :info)
   end
 
   def fetch_tag
