@@ -52,6 +52,21 @@ crumb :edit_market do |market|
 	parent :markets
 end
 
+crumb :tags do
+	link t('admin.tags.index'), admin_tags_path
+	parent :admin_root
+end
+
+crumb :new_tag do |tag|
+	link t('admin.tags.new'), new_admin_tag_path(tag)
+	parent :tags
+end
+
+crumb :edit_tag do |tag|
+	link t('admin.tags.edit'), edit_admin_tag_path(tag)
+	parent :tags
+end
+
 crumb :trading_histories do
 	link t('admin.trading_histories.index'), admin_trading_histories_path
 	parent :admin_root

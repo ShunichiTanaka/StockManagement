@@ -23,11 +23,6 @@ class Admin::BrandsController < ApplicationController
   end
 
   def show
-    # quandl = Quandls.new(@brand)
-    # quandl.quandl_client
-    # brand_data = quandl.receive_stock_info
-    # google_chart = GoogleChart.new
-    # @brand_chart = google_chart.line_chart(brand_data, true)
     @stock_price = StockPrice.where(code: params[:code])
                              .order("target_date")
                              .last

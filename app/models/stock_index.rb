@@ -64,8 +64,8 @@ class StockIndex < ActiveRecord::Base
         pointHoverBackgroundColor: Settings.color[index_name],
         pointHoverBorderColor: Settings.color[index_name],
         pointHoverBorderWidth: 3,
-        pointRadius: 4,
-        pointHitRadius: 10,
+        pointRadius: 3,
+        pointHitRadius: 3,
         data: summaries
       }]
     end

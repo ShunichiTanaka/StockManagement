@@ -1,0 +1,5 @@
+- breadcrumb :edit_tag, @tag
+
+section.content
+  = form_for(@tag, url: admin_tag_path) do |f|
+    = render partial: 'form', locals: { f: f, edit_flg: true }

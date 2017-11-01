@@ -21,6 +21,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require chart.js/dist/Chart.js
+//= require select2
 
 $(function() {
   var $body = $("body");
@@ -41,5 +42,9 @@ $(function() {
             previous: "fa fa-arrow-left",
             next: "fa fa-arrow-right"
            }
+  });
+
+  $(".select2").select2({
+    allow_Clear: true
   });
 });

@@ -10,6 +10,7 @@ class Admin::TradingHistoriesController < ApplicationController
   def create
     @trading_history = TradingHistory.new(store_trading_history)
     if @trading_history.save
+      @trading_history.save_tags
       # TODO: error detail
       flash[:notice] = ["create new trading_history"]
       redirect_to action: "index"
@@ -32,6 +33,7 @@ class Admin::TradingHistoriesController < ApplicationController
 
   def update
     if @trading_history.update(store_trading_history)
+      @trading_history.save_tags
       # TODO: error detail
       flash[:notice] = ["update trading_history"]
       redirect_to action: "index"
@@ -50,13 +52,13 @@ class Admin::TradingHistoriesController < ApplicationController
       :purchase_price,
       :stock_number,
       :disposal_date,
-      :disposal_price,
-      :profit
+      :disposal_price
     )
-    disposal_price = trading_history["disposal_price"]
+    trading_history[:tag_ids] = params[:trading_history][:tag_ids].slice(1..-1)
+    disposal_price = trading_history[:disposal_price]
     if disposal_price.present?
-      profit = (disposal_price.to_i - trading_history["purchase_price"].to_i) * trading_history["stock_number"].to_i
-      trading_history["profit"] = profit
+      profit = (disposal_price.to_i - trading_history[:purchase_price].to_i) * trading_history[:stock_number].to_i
+      trading_history[:profit] = profit
     end
     trading_history
   end

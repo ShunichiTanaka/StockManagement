@@ -9,6 +9,7 @@ ja:
       field: 分野管理
       market: 市場管理
       brands: 銘柄管理
+      tags: タグ管理
       stock_analysis: 株価分析
       trading_history: 取引履歴
       new: 新規作成

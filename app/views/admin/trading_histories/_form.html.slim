@@ -39,9 +39,15 @@
         .form-group
           div.row
             .col-sm-2
+              = f.label TradingHistory.human_attribute_name(:tags)
+            .col-sm-10
+              = f.select :tag_ids, select_tags, {}, class: "form-control select2", multiple: true
+        .form-group
+          div.row
+            .col-sm-2
               = f.label :disposal_price
             .col-sm-10
-              = f.text_field :disposal_price, class: "form-control"
+              = f.text_field :disposal_price, class: "form-control", multiple: true
       .box-footer.text-center
         - if edit_flg == true
           = f.submit t('views.admin.update'), class: "btn btn-primary"

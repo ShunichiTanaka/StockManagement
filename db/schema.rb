@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170727135358) do
+ActiveRecord::Schema.define(version: 20170910080301) do
 
   create_table "brands", force: :cascade do |t|
     t.string   "name",       limit: 255,   null: false
@@ -81,16 +81,35 @@ ActiveRecord::Schema.define(version: 20170727135358) do
 
   add_index "stock_prices", ["target_date", "code"], name: "index_stock_prices_on_target_date_and_code", using: :btree
 
+  create_table "tags", force: :cascade do |t|
+    t.string   "name",       limit: 255,   null: false
+    t.string   "color",      limit: 255,   null: false
+    t.text     "info",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "trade_tags", force: :cascade do |t|
+    t.integer  "trading_history_id", limit: 8
+    t.integer  "tag_id",             limit: 8
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+  end
+
+  add_index "trade_tags", ["tag_id"], name: "index_trade_tags_on_tag_id", using: :btree
+  add_index "trade_tags", ["trading_history_id"], name: "index_trade_tags_on_trading_history_id", using: :btree
+
   create_table "trading_histories", force: :cascade do |t|
-    t.date     "purchase_date",            null: false
-    t.integer  "code",           limit: 4, null: false
-    t.integer  "purchase_price", limit: 4, null: false
-    t.integer  "stock_number",   limit: 4, null: false
+    t.date     "purchase_date",              null: false
+    t.integer  "code",           limit: 4,   null: false
+    t.integer  "purchase_price", limit: 4,   null: false
+    t.integer  "stock_number",   limit: 4,   null: false
     t.date     "disposal_date"
     t.integer  "disposal_price", limit: 4
     t.integer  "profit",         limit: 4
-    t.datetime "created_at",               null: false
-    t.datetime "updated_at",               null: false
+    t.string   "tag",            limit: 255
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -120,4 +139,6 @@ ActiveRecord::Schema.define(version: 20170727135358) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
+  add_foreign_key "trade_tags", "tags"
+  add_foreign_key "trade_tags", "trading_histories"
 end

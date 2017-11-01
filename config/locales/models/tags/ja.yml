@@ -1,0 +1,9 @@
+ja:
+  activerecord:
+    models:
+      tag: タグ
+    attributes:
+      tag:
+        name: タグ名
+        color: 色
+        info: 備考
