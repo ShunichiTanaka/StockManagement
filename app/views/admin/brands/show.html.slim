@@ -61,7 +61,7 @@ section.content
             .col-xs-6
               .box
                 .box-header.with-border
-                  h3.box-title #{t('admin.brands.bollinger_band')}
+                  h3.box-title #{t('admin.brands.close_price_trend')}
                 .box-body
                   table.talbe.table-borderd.table-hover
                     div.chart id="#{@stock_price.code}"
@@ -69,11 +69,10 @@ section.content
             .col-xs-6
               .box
                 .box-header.with-border
-                  h3.box-title #{t('admin.brands.bollinger_band')}
+                  h3.box-title #{t('admin.brands.production_trend')}
                 .box-body
                   table.talbe.table-borderd.table-hover
-                    #chart
-                      /= render_chart @brand_chart, 'chart'
+                  canvas#production_trend_chart
           .row
             .col-xs-12
               .box

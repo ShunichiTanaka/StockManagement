@@ -2,6 +2,7 @@ class AdminBrandsController
   show: ->
     brand_code = $(".chart")[0].id
     show_stock_price_summary(brand_code)
+    show_stock_production_summary(brand_code)
 
   show_stock_price_summary = (brand_code) ->
     $.ajax({
@@ -18,6 +19,40 @@ class AdminBrandsController
           title: {
             display: true,
             text: "過去１ヶ月間の終値遷移",
+            position: "bottom"
+          },
+          legend: {
+            display: false
+          },
+          scales: {
+            xAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
+        }
+      })
+    .fail (data) ->
+      $.notify({ icon: "fa fa-ban", message: "データを取得できませんでした。" }, { type: "danger" })
+
+  show_stock_production_summary = (brand_code) ->
+    $.ajax({
+          type: "GET",
+          dataType: "json",
+          url: "/admin/brands/production_trend_chart",
+          data: { code: brand_code }
+    }).done (data) ->
+      ctx = document.getElementById("production_trend_chart").getContext("2d")
+      brands_data = new Chart(ctx, {
+        type: "bar",
+        data: data,
+        options: {
+          title: {
+            display: true,
+            text: "過去１ヶ月間の出来高遷移",
             position: "bottom"
           },
           legend: {

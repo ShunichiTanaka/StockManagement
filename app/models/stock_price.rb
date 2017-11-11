@@ -77,12 +77,21 @@ class StockPrice < ActiveRecord::Base
       new_market.id
     end
 
-    def summary_brand(code)
+    def summary_brand_for_price(code)
+      summary_data_hash(code, :close)
+    end
+
+    def summary_brand_for_production(code)
+      summary_data_hash(code, :trading_value)
+    end
+
+    private
+
+    def summary_data_hash(code, target_column)
       target_range = StockPrice.from_current_day(31).reverse
       date_data = target_range.map { |d| d.strftime("%m/%d") }
       summaries = where(code: code, target_date: target_range)
-                  .order("target_date desc").pluck(:close).reverse
-
+                  .order("target_date desc").pluck(target_column).reverse
       {
         labels: date_data,
         datasets: generate_chart_js_options(summaries)

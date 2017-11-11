@@ -12,4 +12,5 @@ ja:
       close: 終値
       ratio: 前日比
       trading_history: 取引履歴
-      bollinger_band: ボリンジャーバンド
+      close_price_trend: 終値推移
+      production_trend: 出来高推移
