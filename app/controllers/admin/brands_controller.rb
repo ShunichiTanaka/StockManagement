@@ -58,7 +58,11 @@ class Admin::BrandsController < ApplicationController
   end
 
   def stock_price_to_chart
-    render json: StockPrice.summary_brand(params[:code])
+    render json: StockPrice.summary_brand_for_price(params[:code])
+  end
+
+  def production_trend_chart
+    render json: StockPrice.summary_brand_for_production(params[:code])
   end
 
   private
