@@ -1,4 +1,6 @@
 class Admin::StockAnalysesController < ApplicationController
+  include Stochastic
+
   def index
   end
 
@@ -6,9 +8,19 @@ class Admin::StockAnalysesController < ApplicationController
     # csvファイルの取り込み
     csv_file = params[:file]
     if csv_file.present?
-      target_date = csv_file.original_filename.match(/\d{4}-\d{2}-\d{2}/)[0].to_date
+      # 株価サイトのファイル名に準拠
+      target_date =  ("20" + csv_file.original_filename.match(/\d{6}/)[0]).to_date
       data = CSV.read(params[:file].path, encoding: "Shift_JIS:UTF-8")[253..-1]
       StockPrice.data_import(data, target_date)
+    end
+
+    target_range = StockPrice.from_current_day(D_VALUE)
+    pre_target_range = StockPrice.from_previous_day(D_VALUE)
+    @arr = []
+    Brand.all.each do |brand|
+      d = calc_stochastic(brand.code, target_range)
+      pre_d = calc_stochastic(brand.code, pre_target_range)
+      @arr << { code: brand.code, name: brand.name, val: d } if target_stochastic(d, pre_d)
     end
 
     # 最新の日付
