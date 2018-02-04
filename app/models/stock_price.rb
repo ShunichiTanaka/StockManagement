@@ -57,17 +57,16 @@ class StockPrice < ActiveRecord::Base
     def data_import(data, target_date)
       data.each do |d|
         next if d.include?(nil)
-        brand = Brand.find_by(code: d[0].match(/\d*/)[0])
-        if brand.blank?
-          Brand.create(name: d[1], code: d[0].match(/\d*/)[0].to_i)
+        unless Brand.find_by(code: d[1].match(/\d*/)[0])
+          Brand.create(name: d[3][5..-1], code: d[1].match(/\d*/)[0].to_i)
         end
-        market = Market.find_by(name: d[2])
-        new_market = Market.create(name: d[2]) if market.blank?
+        market = Market.find_by(name: d[9])
+        new_market = Market.create(name: d[9]) if market.blank?
         create(
           target_date: target_date,
-          code: d[0].match(/\d*/)[0],
+          code: d[1].match(/\d*/)[0],
           market_id: select_market(market, new_market),
-          open: d[3], high: d[4], low: d[5], close: d[6], trading_value: d[8]
+          open: d[4], high: d[5], low: d[6], close: d[7], trading_value: d[8]
         )
       end
     end
